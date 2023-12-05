@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: d78772a141455474687258427c51631c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Youth and Beauty
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e488aea7d2df17f44b39323924361c25, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

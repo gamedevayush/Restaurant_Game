@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95635379f22f20c4eb40d781d7a9c1bf, type: 3}
+  m_Name: M_AdultSound
+  m_EditorClassIdentifier: 
+  rating1:
+  - {fileID: 8300000, guid: 78f93deb2f1ba4a439e739c74816a516, type: 3}
+  rating2:
+  - {fileID: 8300000, guid: 9cf4046257f0a7d4a8dbeac7fee1bb52, type: 3}
+  rating3:
+  - {fileID: 8300000, guid: 4555639c942bb7b44b5585009070e5ed, type: 3}
+  rating4:
+  - {fileID: 8300000, guid: 5d759f5e1871bdd4a9f99f2ed60b4acc, type: 3}
+  rating5:
+  - {fileID: 8300000, guid: e4ed473c8cf32f64fb1732846661b3f0, type: 3}
+  askingForPaneerTikka:
+  - {fileID: 8300000, guid: 555b0d80f4c80a44a8b9d6da1303696c, type: 3}
+  askingForSamosa:
+  - {fileID: 8300000, guid: cc8fd9e1e085e8247bddbebd4c3510c6, type: 3}
+  askingForTea:
+  - {fileID: 8300000, guid: ead780fd1f7802e47aa63f225aca6403, type: 3}
+  askingForPakori:
+  - {fileID: 8300000, guid: 82311a1ab40ac0c41b7a4d71505e0331, type: 3}

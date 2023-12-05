@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfe6e8626a7cd5f459c6ae268ab83a61, type: 3}
+  m_Name: Level21
+  m_EditorClassIdentifier: 
+  levelNum: 21
+  totalCustomers: 5
+  consecCustomers: 4
+  totalLevelTime: 360
+  avgRatingReq: 4
+  isCompleted: 0
+  givenCoins: 35
+  Requirements:
+  - paneerTikka: 0
+    samosa: 4
+    pakori: 0
+    tea: 0
+  - paneerTikka: 0
+    samosa: 3
+    pakori: 0
+    tea: 0
+  - paneerTikka: 0
+    samosa: 4
+    pakori: 0
+    tea: 0
+  - paneerTikka: 0
+    samosa: 5
+    pakori: 0
+    tea: 0
+  - paneerTikka: 0
+    samosa: 1
+    pakori: 0
+    tea: 0

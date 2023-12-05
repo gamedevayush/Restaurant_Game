@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef5bd38d3ca6824395b8b9a96525aa8, type: 3}
+  m_Name: Food_Condition
+  m_EditorClassIdentifier: 
+  forTea:
+    potato: 0
+    flour: 0
+    spice: 1
+    milk: 1
+    sugar: 1
+    tea_leaves: 1
+    oil: 0
+    besan: 0
+  forPakora:
+    potato: 4
+    flour: 0
+    spice: 1
+    milk: 0
+    sugar: 0
+    tea_leaves: 0
+    oil: 1
+    besan: 4
+  forPaneerTikka:
+    potato: 0
+    flour: 0
+    spice: 2
+    milk: 2
+    sugar: 0
+    tea_leaves: 0
+    oil: 2
+    besan: 0
+  forSamosa:
+    potato: 2
+    flour: 3
+    spice: 1
+    milk: 0
+    sugar: 0
+    tea_leaves: 0
+    oil: 3
+    besan: 0
