@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     private static LevelManager _instance;
     public static LevelManager Instance { get { return _instance; } }
     public CustomerGenerator customerGenerator;

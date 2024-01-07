@@ -5,9 +5,9 @@ using TMPro;
 
 public class HutsManager : MonoBehaviour
 {
-	public GameObject FTManager;
-public TMP_Text TimeLeft2;
-        public TMP_Text Statusorder2;
+    public GameObject FTManager;
+    public TMP_Text TimeLeft2;
+    public TMP_Text Statusorder2;
     [System.Serializable]
     public class HutsInfo
     {
@@ -66,7 +66,7 @@ public TMP_Text TimeLeft2;
         }
 
     }
-
+    
 
     public void ShowTime()
     {
@@ -79,7 +79,7 @@ public TMP_Text TimeLeft2;
                 hut1.TimeLeft.color = Color.green;
                 TimeLeft2.color = Color.green;
             }
-            if (time1 > 100 && time1<=200)
+            if (time1 > 100 && time1 <= 200)
             {
                 hut1.TimeLeft.color = Color.yellow;
                 TimeLeft2.color = Color.yellow;
@@ -173,15 +173,15 @@ public TMP_Text TimeLeft2;
 
     public void SetHutStatus(int hutNo, string food, int quantity)
     {
-		if(GameManager.Instance.isLearnt()==false)
-		{
-       FTManager.GetComponent<FirstTimeManager>().NextBtn();
-		}
+        if (GameManager.Instance.isLearnt() == false)
+        {
+            FTManager.GetComponent<FirstTimeManager>().NextBtn();
+        }
         if (hutNo == 1)
         {
             hut1.order.text = food + quantity;
             hut1.Statusorder.text = food + quantity;
-		           Statusorder2.text = food + quantity;
+            Statusorder2.text = food + quantity;
         }
         if (hutNo == 2)
         {
@@ -212,41 +212,41 @@ public TMP_Text TimeLeft2;
 
         if (hutNo == 1)
         {
-            hut1.order.text ="Empty";
-			Statusorder2.text = "";
-			hut1.Statusorder.color=Color.green;
-			hut1.TimeLeft.color=Color.green;
+            hut1.order.text = "Empty";
+            Statusorder2.text = "";
+            hut1.Statusorder.color = Color.green;
+            hut1.TimeLeft.color = Color.green;
             hut1.Statusorder.text = "Item";
-			hut1.TimeLeft.text="SERVED";
+            hut1.TimeLeft.text = "SERVED";
 
         }
         if (hutNo == 2)
         {
-            hut2.Statusorder.color=Color.green;
-			hut2.TimeLeft.color=Color.green;
+            hut2.Statusorder.color = Color.green;
+            hut2.TimeLeft.color = Color.green;
             hut2.Statusorder.text = "Item";
-			hut2.TimeLeft.text="SERVED";
+            hut2.TimeLeft.text = "SERVED";
         }
         if (hutNo == 3)
         {
-            hut3.Statusorder.color=Color.green;
-			hut3.TimeLeft.color=Color.green;
+            hut3.Statusorder.color = Color.green;
+            hut3.TimeLeft.color = Color.green;
             hut3.Statusorder.text = "Item";
-			hut3.TimeLeft.text="SERVED";
+            hut3.TimeLeft.text = "SERVED";
         }
         if (hutNo == 4)
         {
-            hut4.Statusorder.color=Color.green;
-			hut4.TimeLeft.color=Color.green;
+            hut4.Statusorder.color = Color.green;
+            hut4.TimeLeft.color = Color.green;
             hut4.Statusorder.text = "Item";
-			hut4.TimeLeft.text="SERVED";
+            hut4.TimeLeft.text = "SERVED";
         }
         if (hutNo == 5)
         {
-            hut5.Statusorder.color=Color.green;
-			hut5.TimeLeft.color=Color.green;
+            hut5.Statusorder.color = Color.green;
+            hut5.TimeLeft.color = Color.green;
             hut5.Statusorder.text = "Item";
-			hut5.TimeLeft.text="SERVED";
+            hut5.TimeLeft.text = "SERVED";
         }
 
     }
