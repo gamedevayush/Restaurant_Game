@@ -77,20 +77,20 @@ public class HutsManager : MonoBehaviour
             if (time1 < 100)
             {
                 hut1.TimeLeft.color = Color.green;
-                TimeLeft2.color = Color.green;
+               // TimeLeft2.color = Color.green;
             }
             if (time1 > 100 && time1 <= 200)
             {
                 hut1.TimeLeft.color = Color.yellow;
-                TimeLeft2.color = Color.yellow;
+               // TimeLeft2.color = Color.yellow;
             }
             if (time1 > 200)
             {
                 hut1.TimeLeft.color = Color.red;
-                TimeLeft2.color = Color.red;
+                //TimeLeft2.color = Color.red;
             }
             hut1.TimeLeft.text = time1.ToString();
-            TimeLeft2.text = time1.ToString();
+          //  TimeLeft2.text = time1.ToString();
         }
 
         //For HUt2
