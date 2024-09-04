@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6f6c519cb5367ef4e9509cb43858cad3
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Howdy Lemon
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7dcafa1e1fe3e1443b7f932364110902, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
