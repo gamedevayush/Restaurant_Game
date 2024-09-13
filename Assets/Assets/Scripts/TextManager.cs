@@ -1,218 +1,172 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TextManager : MonoBehaviour
 {
     public string tempText = string.Empty;
     public int tempTime = 0;
     public RectTransform rt;
-    public TMPro.TMP_Text txt;
+    public TMP_Text txt;
     public int OffSet;
-    public TMPro.TMP_Text Heading;
+    public TMP_Text Heading;
     public GameObject TextHolder;
     public float CaptiontextTime = 5f;
     public GameObject CloseBtn;
-    string tempHeading;
-    string tempIncomingText;
-    Color tempColorShad;
-    bool tempPopup;
-    public Transform[] pos;
+    private string tempHeading;
+    private string tempIncomingText;
+    private Color tempColorShad;
+    private bool tempPopup;
     public bool isIntro;
 
+    private bool isCaptionBusy;
 
-    bool isCaptionBusy;
-    public static TextManager Instance { get; set; }
+    public static TextManager Instance { get; private set; }
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
             Instance = this;
         }
-
     }
 
-    void Start()
+    private void Start()
     {
-        TextHolder.SetActive(false);
-        if (!isIntro)
-        { 
+       // TextHolder.SetActive(false);
         CloseBtn.SetActive(false);
-        }
-        txt.text = "";
-        Heading.text = "";
-    }
-
-    void ChangeCaptionPos(string posi)
-    {
-        if (posi == "left")
-        {
-            TextHolder.transform.position = pos[0].position;
-        }
-        if (posi == "right")
-        {
-            TextHolder.transform.position = pos[1].position;
-        }
+        ClearText();
     }
     public void ShowToast(string incomingText, int time)
     {
-        if (transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text == string.Empty)
+        if (string.IsNullOrEmpty(txt.text))
         {
-            transform.GetComponent<Animator>().Play("FadeIn");
-            transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = incomingText;
-            //Debug.Log(incomingText);
-            Invoke("FadeOut", time);
+            PlayFadeIn(incomingText);
+            Invoke(nameof(FadeOut), time);
         }
         else
         {
-            //Debug.Log(incomingText);
-            tempText = incomingText;
-            tempTime = time;
-            Invoke("ChangePriority", 1f);
+            QueueText(incomingText, time);
         }
     }
 
     public void Show2SecondNotification(string incomingText)
     {
-        if (transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text == string.Empty)
-        {
-            transform.GetComponent<Animator>().Play("FadeIn");
-            transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = incomingText;
-            //Debug.Log(incomingText);
-            Invoke("FadeOut", 2);
-        }
-        else
-        {
-            //Debug.Log(incomingText);
-            tempText = incomingText;
-            tempTime = 2;
-            Invoke("ChangePriority", 1f);
-        }
+        ShowToast(incomingText, 2);
     }
 
+    private void QueueText(string incomingText, int time)
+    {
+        tempText = incomingText;
+        tempTime = time;
+        Invoke(nameof(ChangePriority), 1f);
+    }
 
-    void ChangePriority()
+    private void ChangePriority()
     {
         ShowToast(tempText, tempTime);
     }
 
-    void FadeOut()
+    private void FadeOut()
     {
-        transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = string.Empty;
-        transform.GetComponent<Animator>().Play("FadeOut");
-            Invoke("RemoveTextInstance", 2f);
+        ClearText();
+        PlayFadeOut();
     }
-    void RemoveTextInstance()
-    { 
-        tempText = string.Empty;
-        tempTime = 0;
-    
-    }
-    void StartCaption()
-    {
 
-        CaptionTextHandler(tempHeading, tempIncomingText, tempColorShad, tempPopup);
-    }
-    public void CaptionTextHandler(string headingText,string incomingText,Color shadee, bool popup)
+    private void PlayFadeIn(string text)
     {
-        
-        if (!popup)
+        txt.text = text;
+        GetComponent<Animator>().Play("FadeIn");
+    }
+
+    private void PlayFadeOut()
+    {
+        txt.text = string.Empty;
+        GetComponent<Animator>().Play("FadeOut");
+    }
+
+    public void CaptionTextHandler(string headingText, string incomingText, Color colorShade, bool popup)
+    {
+        if (isCaptionBusy)
         {
-            StartCoroutine(RevealText(headingText, incomingText, shadee, popup));
+            QueueCaption(headingText, incomingText, colorShade, popup);
             return;
         }
-        else
-        {
-            CloseBtn.SetActive(false);
 
-            Debug.Log("RIGHTT");
-            ChangeCaptionPos("right");
-        }
-        if (!isCaptionBusy)
-        {
-            StartCoroutine(RevealText(headingText, incomingText, shadee, popup));
-        }
-        else
-        {
-            tempHeading = headingText;
-            tempIncomingText = incomingText;
-            tempColorShad = shadee;
-            tempPopup = popup;
-            Invoke("StartCaption", 5f);
-        }
+        StartCoroutine(RevealText(headingText, incomingText, colorShade, popup));
     }
 
-    IEnumerator RevealText(string headeen,string texty,Color shade, bool popup)
+    private void QueueCaption(string headingText, string incomingText, Color colorShade, bool popup)
     {
-        yield return new WaitForSeconds(0.1f);
+        tempHeading = headingText;
+        tempIncomingText = incomingText;
+        tempColorShad = colorShade;
+        tempPopup = popup;
+        Invoke(nameof(StartCaption), 5f);
+    }
+
+    private void StartCaption()
+    {
+        CaptionTextHandler(tempHeading, tempIncomingText, tempColorShad, tempPopup);
+    }
+
+    private IEnumerator RevealText(string headingText, string textContent, Color colorShade, bool popup)
+    {
         isCaptionBusy = true;
         TextHolder.SetActive(true);
-        Heading.text = headeen;
-        Heading.color = shade;
-        var originalString = texty.ToString();
+        Heading.text = headingText;
+        Heading.color = colorShade;
+
+        var originalString = textContent;
         txt.text = "";
-        string rand;
         var numCharsRevealed = 0;
+
         while (numCharsRevealed < originalString.Length)
         {
-            int j = Random.Range(0, 6);
-            switch (j)
-            {
-                case 5:
-                    rand = "@";
-                    break;
-                case 4:
-                    rand = "#";
-                    break;
-                case 3:
-                    rand = "$";
-                    break;
-                case 2:
-                    rand = "%";
-                    break;
-                case 1:
-                    rand = "^";
-                    break;
-                default:
-                    rand = "&";
-                    break;
-            }
-            ++numCharsRevealed;
-            txt.text = originalString.Substring(0, numCharsRevealed)+rand+"|";
-            CaptionsCheck();
+            txt.text = originalString.Substring(0, ++numCharsRevealed) + GetRandomChar() + "|";
+            UpdateTextHolderSize();
             yield return new WaitForSeconds(0.015f);
         }
-        txt.text= texty.ToString();
+
+        txt.text = originalString;
         if (popup)
         {
             CloseBtn.SetActive(true);
             yield return new WaitForSeconds(CaptiontextTime);
-            txt.text = "";
-            Heading.text = "";
-            TextHolder.SetActive(false);
-            isCaptionBusy = false;
+            CloseCaptions();
         }
-        CaptiontextTime = 5;
+        else
+        {
+            CloseBtn.SetActive(false);
+        }
+        isCaptionBusy = false;
     }
-    void CaptionsCheck()
+
+    private string GetRandomChar()
     {
-        rt.sizeDelta = new Vector2(rt.rect.width, txt.preferredHeight + Heading.preferredHeight+OffSet);
+        var randomChars = new[] { "@", "#", "$", "%", "^", "&" };
+        return randomChars[Random.Range(0, randomChars.Length)];
+    }
+
+    private void UpdateTextHolderSize()
+    {
+        rt.sizeDelta = new Vector2(rt.rect.width, txt.preferredHeight + Heading.preferredHeight + OffSet);
     }
 
     public void CloseCaptions()
     {
-        txt.text = "";
-        Heading.text = "";
+        ClearText();
         TextHolder.SetActive(false);
         isCaptionBusy = false;
-        ChangeCaptionPos("left");
-        CaptiontextTime = 5f;
     }
 
-    
+    private void ClearText()
+    {
+        txt.text = "";
+        Heading.text = "";
+    }
 }

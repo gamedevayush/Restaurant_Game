@@ -21741,7 +21741,7 @@ PlayableDirector:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538947435}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 2ac2511b772952749938346125d526ea, type: 2}
   m_InitialState: 1
@@ -80022,7 +80022,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'CC_Base_R_Foot'\n\tTransform 'CC_Base_R_Calf'\n\tTransform
+    'CC_Base_L_Thumb1'\n\tTransform 'CC_Base_L_Clavicle'\n\tTransform 'CC_Base_R_Clavicle'\n\tTransform
+    'CC_Base_L_Mid3'\n\tTransform 'CC_Base_NeckTwist01'\n\tTransform 'CC_Base_R_Index2'\n\tTransform
+    'CC_Base_L_Index2'\n\tTransform 'CC_Base_BoneRoot'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -81323,7 +81328,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'CC_Base_R_Foot'\n\tTransform 'CC_Base_R_Calf'\n\tTransform
+    'CC_Base_L_Thumb1'\n\tTransform 'CC_Base_L_Clavicle'\n\tTransform 'CC_Base_R_Clavicle'\n\tTransform
+    'CC_Base_L_Mid3'\n\tTransform 'CC_Base_NeckTwist01'\n\tTransform 'CC_Base_R_Index2'\n\tTransform
+    'CC_Base_L_Index2'\n\tTransform 'CC_Base_BoneRoot'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0

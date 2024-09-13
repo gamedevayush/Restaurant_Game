@@ -175,7 +175,7 @@ public class HutsManager : MonoBehaviour
     {
         if (GameManager.Instance.isLearnt() == false)
         {
-            FTManager.GetComponent<FirstTimeManager>().NextBtn();
+            //FTManager.GetComponent<FirstTimeManager>().NextBtn();
         }
         if (hutNo == 1)
         {
