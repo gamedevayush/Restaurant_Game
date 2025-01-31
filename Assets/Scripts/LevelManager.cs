@@ -57,7 +57,7 @@ public TMP_Text statusText;
 	public int coins;
 	public Text coinsText;
 	public TMP_Text coinTextBoxinFinal;
-    public GameObject TutorialGO;
+    public GameObject[] TutorialGO;
     public int timeSpeed;
     public int totalPayable, totalDeducted, finalAmount,coinsDueToUpgrade;
     public TMP_Text totalPayabletext, totalDeductedtext, finalAmountexy,coinsDueToUpgradetext;
@@ -91,7 +91,17 @@ public TMP_Text statusText;
     {
         if (GameManager.Instance.isLearnt() == false)
         {
-            TutorialGO.SetActive(true);
+            for (int i = 0; i < TutorialGO.Length; i++)
+            {
+                TutorialGO[i].SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < TutorialGO.Length; i++)
+            {
+                TutorialGO[i].SetActive(false);
+            }
         }
         coins =0;
 		CustNeedToSpawn=0;

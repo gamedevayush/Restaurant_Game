@@ -3,78 +3,62 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CameraFollow : MonoBehaviour {
+public class CameraFollow : MonoBehaviour
+{
+    public float cameraMoveSpeed = 120.0f;
+    public GameObject cameraFollowObj;
+    public float clampAngle = 80.0f;
+    public float inputSensitivityMouse = 150.0f;
+    public float inputSensitivityPhone = 8.0f;
+    public FixedTouchField touchField;
+    public Slider sensitivitySlider;
 
-	public float CameraMoveSpeed = 120.0f;
-	public GameObject CameraFollowObj;
-	Vector3 FollowPOS;
-	public float clampAngle = 80.0f;
-	public float inputSensitivityMouse = 150.0f;
-	public float inputSensitivityPhone = 8.0f;
-	public GameObject CameraObj;
-	public GameObject PlayerObj;
-	public float camDistanceXToPlayer;
-	public float camDistanceYToPlayer;
-	public float camDistanceZToPlayer;
-	public float mouseX;
-	public float mouseY;
-	public float finalInputX;
-	public float finalInputZ;
-	public float smoothX;
-	public float smoothY;
-	private float rotY = 0.0f;
-	private float rotX = 0.0f;
-	public Transform target;
-	public FixedTouchField touchField;
-	public Slider senstivitySlider;
+    private float rotY = 0.0f;
+    private float rotX = 0.0f;
 
+    void Start()
+    {
+        Vector3 rot = transform.localRotation.eulerAngles;
+        rotY = rot.y;
+        rotX = rot.x;
+    }
+   public void SetTarget(GameObject givenTransform)
+    {
+        cameraFollowObj = givenTransform;
+    }
+    void Update()
+    {
+        // Handle input from mouse and touch
+        float inputX = touchField.TouchDist.x * inputSensitivityPhone;
+        float inputZ = touchField.TouchDist.y * inputSensitivityPhone;
+        float mouseX = Input.GetAxis("Mouse X") * inputSensitivityMouse;
+        float mouseY = Input.GetAxis("Mouse Y") * inputSensitivityMouse;
 
+        rotY += (inputX + mouseX) * Time.deltaTime;
+        rotX += (inputZ + mouseY) * Time.deltaTime;
 
-	// Use this for initialization
-	void Start () {
-		Vector3 rot = transform.localRotation.eulerAngles;
-		rotY = rot.y;
-		rotX = rot.x;
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 
-		// We setup the rotation of the sticks here
-		float inputX = touchField.TouchDist.x * inputSensitivityPhone;
-		float inputZ = touchField.TouchDist.y * inputSensitivityPhone;
-		mouseX = Input.GetAxis ("Mouse X") * inputSensitivityMouse;
-		mouseY = Input.GetAxis ("Mouse Y") * inputSensitivityMouse;
-		finalInputX = inputX + mouseX;
-		finalInputZ = inputZ + mouseY;
+        Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+        transform.rotation = localRotation;
+    }
 
-		rotY += finalInputX * Time.deltaTime;
-		rotX += finalInputZ  * Time.deltaTime;
+    void LateUpdate()
+    {
+        CameraUpdater();
+    }
 
-		rotX = Mathf.Clamp (rotX, -clampAngle, clampAngle);
+    void CameraUpdater()
+    {
+        if (cameraFollowObj != null)
+        {
+            float step = cameraMoveSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, cameraFollowObj.transform.position, step);
+        }
+    }
 
-		Quaternion localRotation = Quaternion.Euler (rotX, rotY, 0.0f);
-		transform.rotation = localRotation;
-
-
-	}
-
-	void LateUpdate () {
-		CameraUpdater ();
-	}
-
-	void CameraUpdater() {
-		// set the target object to follow
-		target = CameraFollowObj.transform;
-
-		//move towards the game object that is the target
-		float step = CameraMoveSpeed * Time.deltaTime;
-		transform.position = Vector3.MoveTowards (transform.position, target.position, step);
-	}
-
-	public void changeSensitivity()
-	{
-		inputSensitivityPhone = senstivitySlider.value;
-	}
+    public void ChangeSensitivity()
+    {
+        inputSensitivityPhone = sensitivitySlider.value;
+    }
 }

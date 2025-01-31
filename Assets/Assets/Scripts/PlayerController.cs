@@ -24,18 +24,18 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     public float runSpeed = 2.0f;
     public float smoothRotationTime = 0.25f;
-    float currentVelocity , currentSpeed,speedVelocity; //Just required by a function for calculation purposes
+    float currentVelocity, currentSpeed, speedVelocity; //Just required by a function for calculation purposes
     Rigidbody rb;
 
     void Start()
     {
-       playerCamera = Camera.main.transform;
+        playerCamera = Camera.main.transform;
         theAgent = this.GetComponent<NavMeshAgent>();
         anim = this.GetComponent<Animator>();
         SetDestination(Destinations[7]);
-        transform.rotation = new Quaternion(0, 180, 0,1);
+        transform.rotation = new Quaternion(0, 180, 0, 1);
         rb = this.GetComponent<Rigidbody>();
-       theAgent.updateRotation = true;
+        theAgent.updateRotation = true;
     }
 
     // Update is called once per frame
@@ -43,23 +43,23 @@ public class PlayerController : MonoBehaviour
     {
         if (isMoving && agentActive)
         {
-            if(Vector3.Distance(Destinations[currentDestination].transform.position,transform.position)>0.1f)
-            { 
-                    transform.LookAt(Destinations[currentDestination].transform.position);
-             }
+            if (Vector3.Distance(Destinations[currentDestination].transform.position, transform.position) > 0.1f)
+            {
+                transform.LookAt(Destinations[currentDestination].transform.position);
+            }
         }
 
         Vector2 joystickInput = Vector2.zero;
         Vector2 keyboardInput = Vector2.zero;
-        
-         joystickInput = new Vector2(joystick.input.x ,joystick.input.y);
-        
-      
-            keyboardInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        
+
+        //  joystickInput = new Vector2(joystick.input.x ,joystick.input.y);
+
+
+        //keyboardInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
         Vector2 inputDir = joystickInput.normalized + keyboardInput.normalized;
 
-        if(inputDir != Vector2.zero)
+        if (inputDir != Vector2.zero)
         {
             agentActive = false;
             theAgent.enabled = false;
@@ -76,23 +76,24 @@ public class PlayerController : MonoBehaviour
         }
 
         float targetSpeed = runSpeed * inputDir.magnitude;
-         currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedVelocity, 0.1f);
+        currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedVelocity, 0.1f);
 
-        transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World) ;
+        transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
 
-        
-        if (theAgent.velocity != Vector3.zero  || inputDir != Vector2.zero)
+
+        if (theAgent.velocity != Vector3.zero || inputDir != Vector2.zero)
         {
             anim.SetBool("Move", true);
             isMoving = true;
         }
         else
-        { anim.SetBool("Move", false);
+        {
+            anim.SetBool("Move", false);
             isMoving = false;
         }
 
-       // if(trackPath)
-       // GetPath();
+        // if(trackPath)
+        // GetPath();
     }
 
     public void GetPath()
@@ -103,13 +104,13 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < theAgent.path.corners.Length; i++)
         {
 
-            if (Vector3.Distance(theAgent.path.corners[i], transform.position) <= 0.1f && i < theAgent.path.corners.Length-1)
+            if (Vector3.Distance(theAgent.path.corners[i], transform.position) <= 0.1f && i < theAgent.path.corners.Length - 1)
             {
-                transform.LookAt(theAgent.path.corners[i+1]);
+                transform.LookAt(theAgent.path.corners[i + 1]);
                 Debug.Log("Reachde");
                 continue;
             }
-            if(Vector3.Distance(this.transform.position,theAgent.destination)<=0.1f)
+            if (Vector3.Distance(this.transform.position, theAgent.destination) <= 0.1f)
             {
                 trackPath = false;
             }
@@ -120,10 +121,10 @@ public class PlayerController : MonoBehaviour
 
     public void MoveTo(string placeName)
     {
-		if(GetComponent<PlayerFoodHandling>().broomIk == true)
-		{
-			return;
-		}
+        if (GetComponent<PlayerFoodHandling>().broomIk == true)
+        {
+            return;
+        }
         agentActive = true;
         theAgent.enabled = true;
         if (placeName == "Hut1")
@@ -206,15 +207,15 @@ public class PlayerController : MonoBehaviour
     }
     public void SetDestination(Transform destination)
     {
-        
+
         trackPath = true;
-       //transform.LookAt(destination.transform.position);
+        //transform.LookAt(destination.transform.position);
         Debug.Log("This", gameObject);
         theAgent.SetDestination(destination.position);
-       
+
     }
 
-   
+
 
 
 }

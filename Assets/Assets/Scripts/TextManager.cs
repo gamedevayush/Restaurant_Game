@@ -37,7 +37,7 @@ public class TextManager : MonoBehaviour
 
     private void Start()
     {
-       // TextHolder.SetActive(false);
+        // TextHolder.SetActive(false);
         CloseBtn.SetActive(false);
         ClearText();
     }
@@ -129,7 +129,7 @@ public class TextManager : MonoBehaviour
         {
             txt.text = originalString.Substring(0, ++numCharsRevealed) + GetRandomChar() + "|";
             UpdateTextHolderSize();
-            yield return new WaitForSeconds(0.015f);
+            yield return new WaitForSeconds(0.005f);
         }
 
         txt.text = originalString;
@@ -159,9 +159,12 @@ public class TextManager : MonoBehaviour
 
     public void CloseCaptions()
     {
-        ClearText();
-        TextHolder.SetActive(false);
-        isCaptionBusy = false;
+        if (GameManager.Instance.isLearnt() == true)
+        {
+            ClearText();
+            TextHolder.SetActive(false);
+            isCaptionBusy = false;
+        }
     }
 
     private void ClearText()
