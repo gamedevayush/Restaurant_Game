@@ -15,7 +15,7 @@ public class AdmobController : MonoBehaviour
     private BannerView bannerView;
     private InterstitialAd interstitialAd;
     private RewardedAd rewardedAd;
-   // private RewardedInterstitialAd rewardedInterstitialAd;
+    // private RewardedInterstitialAd rewardedInterstitialAd;
     private float deltaTime;
     public UnityEvent OnAdLoadedEvent;
     public UnityEvent OnAdFailedToLoadEvent;
@@ -29,7 +29,7 @@ public class AdmobController : MonoBehaviour
     public GameObject FreeAdsBtn;
     public GameObject FreeAdsBtn2;
     public UnityEngine.UI.Text newCoinsGetText;
-   // public UnityEngine.UI.Text ErrorText;
+    // public UnityEngine.UI.Text ErrorText;
     public GameObject newCoinsGetBox;
 
     private static AdmobController _instance;
@@ -48,10 +48,11 @@ public class AdmobController : MonoBehaviour
     }
     void Start()
     {
+        return;
         AdScriptStarter();
     }
     void AdScriptStarter()
-    { 
+    {
         UnityMainThread.wkr.AddJob(() =>
         {
             adsCounter = 0;
@@ -100,6 +101,7 @@ public class AdmobController : MonoBehaviour
 
     public void OnAppStateChanged(AppState state)
     {
+        return;
         // Display the app open ad when the app is foregrounded.
         UnityEngine.Debug.Log("App State is " + state);
 
@@ -115,6 +117,7 @@ public class AdmobController : MonoBehaviour
 
     public void RequestAndLoadAppOpenAd()
     {
+        return;
         Debug.Log("Requesting App Open ad.");
 #if UNITY_EDITOR
         string adUnitId = "unused";
@@ -197,6 +200,7 @@ public class AdmobController : MonoBehaviour
 
     public void ShowAppOpenAd()
     {
+        return;
         if (!IsAppOpenAdAvailable)
         {
             return;
@@ -209,6 +213,7 @@ public class AdmobController : MonoBehaviour
 
     public void RequestBannerAd()
     {
+        return;
         Debugger("Requesting Banner ad.");
 
         // These ad units are configured to always serve test ads.
@@ -277,6 +282,7 @@ public class AdmobController : MonoBehaviour
 
     public void RequestAndLoadRewardedAd()
     {
+        return;
         Debugger("Requesting Rewarded ad.");
 #if UNITY_EDITOR
         string adUnitId = "unused";
@@ -296,8 +302,8 @@ public class AdmobController : MonoBehaviour
                 {
                     UnityMainThread.wkr.AddJob(() =>
                     {
-                      ///  ErrorText.text = ErrorText.text + "Rewarded ad failed to load with error: " +
-                            loadError.GetMessage();
+                        ///  ErrorText.text = ErrorText.text + "Rewarded ad failed to load with error: " +
+                        loadError.GetMessage();
                     });
                     Debugger("Rewarded ad failed to load with error: " +
                                 loadError.GetMessage());
@@ -308,7 +314,7 @@ public class AdmobController : MonoBehaviour
                     Debugger("Rewarded ad failed to load.");
                     UnityMainThread.wkr.AddJob(() =>
                     {
-                      //  ErrorText.text = ErrorText.text + "Rewarded ad failed to load.";
+                        //  ErrorText.text = ErrorText.text + "Rewarded ad failed to load.";
                     });
                     return;
                 }
@@ -316,7 +322,7 @@ public class AdmobController : MonoBehaviour
                 Debugger("Rewarded ad loaded.");
                 UnityMainThread.wkr.AddJob(() =>
                 {
-                   // ErrorText.text = ErrorText.text + "Rewarded ad loaded.";
+                    // ErrorText.text = ErrorText.text + "Rewarded ad loaded.";
                     FreeAdsBtn.SetActive(true);
                     FreeAdsBtn2.SetActive(true);
                 });
@@ -327,8 +333,8 @@ public class AdmobController : MonoBehaviour
                     Debugger("Rewarded ad opening.");
                     UnityMainThread.wkr.AddJob(() =>
                     {
-                       // ErrorText.text = ErrorText.text + ("Rewarded ad opening.");
-                       FreeAdsBtn.SetActive(false);
+                        // ErrorText.text = ErrorText.text + ("Rewarded ad opening.");
+                        FreeAdsBtn.SetActive(false);
                         FreeAdsBtn2.SetActive(false);
                     });
                     OnAdOpeningEvent.Invoke();
@@ -360,7 +366,7 @@ public class AdmobController : MonoBehaviour
                 {
                     UnityMainThread.wkr.AddJob(() =>
                     {
-                       // ErrorText.text = ErrorText.text + "Rewarded ad recorded a click.";
+                        // ErrorText.text = ErrorText.text + "Rewarded ad recorded a click.";
                     });
                     Debugger("Rewarded ad recorded a click.");
                 };
@@ -368,8 +374,8 @@ public class AdmobController : MonoBehaviour
                 {
                     UnityMainThread.wkr.AddJob(() =>
                     {
-                       // ErrorText.text = ErrorText.text + "Rewarded ad failed to show with error: " +
-                               error.GetMessage();
+                        // ErrorText.text = ErrorText.text + "Rewarded ad failed to show with error: " +
+                        error.GetMessage();
                     });
                     Debugger("Rewarded ad failed to show with error: " +
                                error.GetMessage());
@@ -387,6 +393,7 @@ public class AdmobController : MonoBehaviour
 
     public void ShowRewardedAd()
     {
+        return;
         if (rewardedAd != null)
         {
             rewardedAd.Show((Reward reward) =>
@@ -407,7 +414,7 @@ public class AdmobController : MonoBehaviour
             Debugger("Rewarded ad is not ready yet.");
             UnityMainThread.wkr.AddJob(() =>
             {
-               // ErrorText.text = ErrorText.text + "Rewarded ad is not ready yet.";
+                // ErrorText.text = ErrorText.text + "Rewarded ad is not ready yet.";
             });
         }
     }
@@ -420,6 +427,7 @@ public class AdmobController : MonoBehaviour
 
     public void RequestAndLoadInterstitialAd()
     {
+        return;
         Debugger("Requesting Interstitial ad.");
 
 #if UNITY_EDITOR
@@ -493,6 +501,7 @@ public class AdmobController : MonoBehaviour
 
     public void ShowInterstitialAd()
     {
+        return;
         if (interstitialAd != null && interstitialAd.CanShowAd())
         {
             interstitialAd.Show();

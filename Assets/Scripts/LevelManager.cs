@@ -49,18 +49,18 @@ public class LevelManager : MonoBehaviour
     float currSec = 0;
     public GameObject EndScreen;
     public GameObject TimeOutScreen;
-    public GameObject[] statusesEndScreen,statusesTimeOutScreen;
-	public int CustNeedToSpawn;
-public TMP_Text statusText;
+    public GameObject[] statusesEndScreen, statusesTimeOutScreen;
+    public int CustNeedToSpawn;
+    public TMP_Text statusText;
     public Sprite passTextures;
     public Sprite failTextures;
-	public int coins;
-	public Text coinsText;
-	public TMP_Text coinTextBoxinFinal;
+    public int coins;
+    public Text coinsText;
+    public TMP_Text coinTextBoxinFinal;
     public GameObject[] TutorialGO;
     public int timeSpeed;
-    public int totalPayable, totalDeducted, finalAmount,coinsDueToUpgrade;
-    public TMP_Text totalPayabletext, totalDeductedtext, finalAmountexy,coinsDueToUpgradetext;
+    public int totalPayable, totalDeducted, finalAmount, coinsDueToUpgrade;
+    public TMP_Text totalPayabletext, totalDeductedtext, finalAmountexy, coinsDueToUpgradetext;
     public List<int> customerId = new List<int>();
     public GameObject BGSound;
     public VehicleStarter[] vehicleStarer;
@@ -82,10 +82,10 @@ public TMP_Text statusText;
         currentRating += opinion;
         CheckLevel();
         Debug.Log(currentRating);
-		
+
     }
 
-    
+
 
     void Start()
     {
@@ -103,9 +103,9 @@ public TMP_Text statusText;
                 TutorialGO[i].SetActive(false);
             }
         }
-        coins =0;
-		CustNeedToSpawn=0;
-		coinTextBoxinFinal.text= "";
+        coins = 0;
+        CustNeedToSpawn = 0;
+        coinTextBoxinFinal.text = "";
         levelStarted = false;
         Time.timeScale = timeSpeed;
         //SetLevel(LevelNo);
@@ -113,89 +113,93 @@ public TMP_Text statusText;
     }
     private void Update()
     {
-        if(levelStarted)
-            {
+        if (levelStarted)
+        {
             timecurrent += Time.deltaTime;
             currMin = Mathf.Floor(timecurrent / 60);
             currSec = timecurrent % 60;
             ObjtimeCurrent.text = currMin.ToString("00") + ":" + currSec.ToString("00");
             ObjRatingCurrent.text = currentRating.ToString();
             ObjCustCurrent.text = currentReached.ToString();
-			
+
             if (timecurrent >= currentLevel.totalLevelTime)
             {
-                levelStarted = false; }
-			}
+                levelStarted = false;
+            }
+        }
     }
-	public void AddCoins(int increaseBy)
-	{
-		ChangeCoinsTo(coins+increaseBy);
-	}
-	
-	public void ChangeCoinsTo(int newCoins)
+    public void AddCoins(int increaseBy)
     {
-	int temp=coins;
-	coins=newCoins;
-		StartCoroutine(changeValueOverTime(temp, newCoins, 2f));
-	}
-	
-	IEnumerator changeValueOverTime(float fromVal, float toVal, float duration)
-{
-    float counter = 0f;
-
-    while (counter < duration)
-    {
-        if (Time.timeScale == 0)
-            counter += Time.unscaledDeltaTime;
-        else
-            counter += Time.deltaTime;
-
-        float val = Mathf.Lerp(fromVal, toVal, counter / duration);
- 
-		coinsText.text=((int)val).ToString();
-        yield return null;
+        ChangeCoinsTo(coins + increaseBy);
     }
-}
+
+    public void ChangeCoinsTo(int newCoins)
+    {
+        int temp = coins;
+        coins = newCoins;
+        StartCoroutine(changeValueOverTime(temp, newCoins, 2f));
+    }
+
+    IEnumerator changeValueOverTime(float fromVal, float toVal, float duration)
+    {
+        float counter = 0f;
+
+        while (counter < duration)
+        {
+            if (Time.timeScale == 0)
+                counter += Time.unscaledDeltaTime;
+            else
+                counter += Time.deltaTime;
+
+            float val = Mathf.Lerp(fromVal, toVal, counter / duration);
+
+            coinsText.text = ((int)val).ToString();
+            yield return null;
+        }
+    }
     // Update is called once per frame
-	public void ShuruKrvaao()
-	{
-		StartCoroutine(SpawnCust());
-	}
-	public IEnumerator SpawnCust()
-	{
-		if(customerGenerator.currentData.totalCustomersPresent < 6)
-		{
-		for(int i=0;i<currentLevel.consecCustomers;i++)
-		{
-			if(CustNeedToSpawn>0)
-			{
-			customerGenerator.GenerateCustomer();
-			}
-			CustNeedToSpawn--;
-		
+    public void ShuruKrvaao()
+    {
+        StartCoroutine(SpawnCust());
+    }
+    public IEnumerator SpawnCust()
+    {
+        if (customerGenerator.currentData.totalCustomersPresent < 6)
+        {
+            for (int i = 0; i < currentLevel.consecCustomers; i++)
+            {
+                if (CustNeedToSpawn > 0)
+                {
+                    customerGenerator.GenerateCustomer();
+                }
+                CustNeedToSpawn--;
 
 
-			yield return new WaitForSeconds(Random.Range(3,7));
-		}
-		}
-	}
+
+                yield return new WaitForSeconds(Random.Range(3, 7));
+            }
+        }
+    }
     public void SetLevel(int levelNumber)
     {
         TextManager.Instance.CloseCaptions();
-        ReceiptGenerator.Instance.StartUpgradeCheck();
+        if (GameManager.Instance.isLearnt() == true)
+        {
+            ReceiptGenerator.Instance.StartUpgradeCheck();
+        }
         SoundManager.Instance.PlaySound("tap");
         BGSound.SetActive(true);
         int currentNumber = levelNumber - 1;
         currentLevel = levels[currentNumber];
-		ChangeCoinsTo(currentLevel.givenCoins);
+        ChangeCoinsTo(currentLevel.givenCoins);
         Debug.Log(currentLevel);
         min = Mathf.Floor(currentLevel.totalLevelTime / 60);
         sec = currentLevel.totalLevelTime % 60;
-        timeRequired.text = min.ToString("00")+":"+ sec.ToString("00");
+        timeRequired.text = min.ToString("00") + ":" + sec.ToString("00");
         totalCustomerstext.text = currentLevel.totalCustomers.ToString();
         ratingRequired.text = currentLevel.avgRatingReq.ToString();
         levelNumbertext.text = currentLevel.levelNum.ToString();
-        LevelNumb.text = "LEVEL "+currentLevel.levelNum.ToString(); ;
+        LevelNumb.text = "LEVEL " + currentLevel.levelNum.ToString(); ;
 
         CustNeedToSpawn = currentLevel.totalCustomers;
         AdmobController.Instance.ShowInterstitialAd();
@@ -205,7 +209,7 @@ public TMP_Text statusText;
         foreach (VehicleStarter starter in vehicleStarer)
         {
             starter.GenerateNextVehicle();
-        
+
         }
         PC.GetComponent<PlayerController>().enabled = true;
         joyStick.SetActive(true);
@@ -216,36 +220,36 @@ public TMP_Text statusText;
     }
     IEnumerator CountTime()
     {
-       
+
         yield return new WaitForSeconds(1); //To Remove the Glitch of Divide by Zero\
         Debug.Log(currentLevel.totalLevelTime);
         ObjtimeRequired.text = min.ToString("00") + ":" + sec.ToString("00");
         ObjRatingRequired.text = currentLevel.avgRatingReq.ToString();
-        ObjCustRequired.text= currentLevel.totalCustomers.ToString();
+        ObjCustRequired.text = currentLevel.totalCustomers.ToString();
         yield return new WaitForSeconds(currentLevel.totalLevelTime);
         string levelStatus = ((isLevelCompleted()) ? "Level Passes" : "Level Failed");
         if (levelStatus.Equals("Level Failed"))
-	
+
             ShowTimeOutScreen();
-			StopAllCoroutines();
-		
+        StopAllCoroutines();
+
     }
 
-	public void StartLevelforFirstTime()
+    public void StartLevelforFirstTime()
     {
         PC.GetComponent<PlayerController>().enabled = true;
         MenuManager.Instance.ChangeMenu("side");
     }
-	public void CustSpawnforFirstTime()
+    public void CustSpawnforFirstTime()
     {
         StartCoroutine(SpawnCust());
     }
-	public void FirstTimeLevelStarter()
-	{
-		levelStarted = true;
+    public void FirstTimeLevelStarter()
+    {
+        levelStarted = true;
         StartCoroutine(CountTime());
-	}
-	
+    }
+
 
 
 
@@ -253,7 +257,7 @@ public TMP_Text statusText;
     {
         int avgRating = currentRating / currentLevel.totalCustomers;
 
-        if(avgRating >= currentLevel.avgRatingReq)
+        if (avgRating >= currentLevel.avgRatingReq)
         {
             return true;
         }
@@ -267,13 +271,13 @@ public TMP_Text statusText;
             string levelStatus = ((isLevelCompleted()) ? "Level Passes" : "Level Failed");
             Debug.Log(levelStatus);
             ShowEndScreen();
-        } 
+        }
     }
 
 
     void ShowEndScreen()
     {
-		BGSound.SetActive(false);
+        BGSound.SetActive(false);
         totalDeductedtext.text = totalDeducted.ToString();
         totalPayabletext.text = totalPayable.ToString();
         coinsDueToUpgradetext.text = coinsDueToUpgrade.ToString();
@@ -284,16 +288,16 @@ public TMP_Text statusText;
 
         EndScreenRatingRequired.text = currentLevel.avgRatingReq.ToString();
         EndScreenRatingCurrent.text = currentRating.ToString();
-        EndScreenCustRequired.text= currentLevel.totalCustomers.ToString();
-        EndScreenCustCurrent.text= currentReached.ToString();
-		
-		
+        EndScreenCustRequired.text = currentLevel.totalCustomers.ToString();
+        EndScreenCustCurrent.text = currentReached.ToString();
 
-        if(currentTime < currentLevel.totalLevelTime)
+
+
+        if (currentTime < currentLevel.totalLevelTime)
         {
 
             statusesEndScreen[0].GetComponent<Image>().sprite = passTextures;
-			
+
 
         }
         else
@@ -323,41 +327,41 @@ public TMP_Text statusText;
         PC.GetComponent<PlayerController>().enabled = false;
         joyStick.SetActive(false);
         MenuManager.Instance.ResetAll();
-		if(currentRating < currentLevel.avgRatingReq)
-		{
-			SoundManager.Instance.PlaySound("fail");
-			statusText.text="Level Failed";
-			coinTextBoxinFinal.text="+ 100";
-            GameManager.Instance.AddCoins(200*currentLevel.levelNum);
-		}
-		if(currentRating >= currentLevel.avgRatingReq)
-		{
-			
-			SoundManager.Instance.PlaySound("success");
-			statusText.text="Level Passed";
-			Debug.Log(currentLevel.levelNum);
-			coinTextBoxinFinal.text="+ 500";
+        if (currentRating < currentLevel.avgRatingReq)
+        {
+            SoundManager.Instance.PlaySound("fail");
+            statusText.text = "Level Failed";
+            coinTextBoxinFinal.text = "+ 100";
+            GameManager.Instance.AddCoins(200 * currentLevel.levelNum);
+        }
+        if (currentRating >= currentLevel.avgRatingReq)
+        {
+
+            SoundManager.Instance.PlaySound("success");
+            statusText.text = "Level Passed";
+            Debug.Log(currentLevel.levelNum);
+            coinTextBoxinFinal.text = "+ 500";
             GameManager.Instance.AddCoins(500 * currentLevel.levelNum);
             GameManager.Instance.SaveLevel(currentLevel.levelNum);
-			StopAllCoroutines();
-			
-		}
-        
+            StopAllCoroutines();
+
+        }
+
     }
 
 
     void ShowTimeOutScreen()
     {
-		BGSound.SetActive(false);
+        BGSound.SetActive(false);
         SoundManager.Instance.PlaySound("fail");
         TimeOutScreen.SetActive(true);
-       
+
         TimeOutScreenRatingRequired.text = currentLevel.avgRatingReq.ToString();
         TimeOutScreenRatingCurrent.text = currentRating.ToString();
         TimeOutScreenCustRequired.text = currentLevel.totalCustomers.ToString();
         TimeOutScreenCustCurrent.text = currentReached.ToString();
 
-     
+
 
 
         if (currentReached >= currentLevel.totalCustomers)
@@ -381,8 +385,8 @@ public TMP_Text statusText;
         PC.GetComponent<PlayerController>().enabled = false;
         MenuManager.Instance.ResetAll();
     }
-	
-	
-	
+
+
+
 
 }
