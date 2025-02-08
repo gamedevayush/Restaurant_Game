@@ -44,6 +44,10 @@ public class FirstTimeManager : MonoBehaviour
 
     public void ShowStep(int stepIndex)
     {
+        if (GameManager.Instance.isLearnt())
+        {
+            return;
+        }
         if (stepIndex < tutorialSteps.Count)
         {
             TutorialStep step = tutorialSteps[stepIndex];
@@ -86,10 +90,12 @@ public class FirstTimeManager : MonoBehaviour
             EndTutorial(); // End the tutorial if all steps are completed
         }
     }
-
-    // This method will be called when the Next button is clicked
     public void OnNextButtonClicked()
     {
+        if (GameManager.Instance.isLearnt())
+        {
+            return;
+        }
         currentStepIndex++;
         ShowStep(currentStepIndex);
     }

@@ -76,14 +76,14 @@ public class CustomerAI : MonoBehaviour
 
         //SetDestination(destinations.RandomPlaces[0]);
         FindHut();
-        
+
         src = this.GetComponent<AudioSource>();
         theAgent.updateRotation = false;
 
     }
 
 
-    void Update()
+    void LateUpdate()
     {
         HandleAnimations();
         if (theAgent.velocity.sqrMagnitude > Mathf.Epsilon)
@@ -277,7 +277,7 @@ public class CustomerAI : MonoBehaviour
             TextSpeech.TextToSpeech.Instance.StartSpeak("Enteries in level Manager misMatch" + currentLevel.levelNum);
         }
 
-        TextManager.Instance.CaptionTextHandler("Alert","New Order Recieved from Hut No."+ AI_Information.hutNo+ "<br> Name- "+AI_Information.name+ "<br>Order- " + AI_Information.foodOrder + " <br>Quantity- " + AI_Information.quantity +" . ", Color.red,true);
+        TextManager.Instance.CaptionTextHandler("Alert", "New Order Recieved from Hut No." + AI_Information.hutNo + "<br> Name- " + AI_Information.name + "<br>Order- " + AI_Information.foodOrder + " <br>Quantity- " + AI_Information.quantity + " . ", Color.red, true);
 
         AI_Information.amountToPay = StockInventory.Instance.CalculateAmount(AI_Information.foodOrder, AI_Information.quantity);
 
@@ -292,7 +292,7 @@ public class CustomerAI : MonoBehaviour
 
 
             hutManager.hut1.hutMarker.GetComponent<MarkerTrigger>().foodName = AI_Information.foodOrder;
-            hutManager.hut1.hutMarker.GetComponent<MarkerTrigger>().quntity = AI_Information.quantity;
+            hutManager.hut1.hutMarker.GetComponent<MarkerTrigger>().quantity = AI_Information.quantity;
             hutManager.hut1.hutMarker.GetComponent<MarkerTrigger>().customer = this;
 
         }
@@ -300,28 +300,28 @@ public class CustomerAI : MonoBehaviour
         {
             hutManager.hut2.hutMarker.SetActive(true);
             hutManager.hut2.hutMarker.GetComponent<MarkerTrigger>().foodName = AI_Information.foodOrder;
-            hutManager.hut2.hutMarker.GetComponent<MarkerTrigger>().quntity = AI_Information.quantity;
+            hutManager.hut2.hutMarker.GetComponent<MarkerTrigger>().quantity = AI_Information.quantity;
             hutManager.hut2.hutMarker.GetComponent<MarkerTrigger>().customer = this;
         }
         if (AI_Information.hutNo == 3)
         {
             hutManager.hut3.hutMarker.SetActive(true);
             hutManager.hut3.hutMarker.GetComponent<MarkerTrigger>().foodName = AI_Information.foodOrder;
-            hutManager.hut3.hutMarker.GetComponent<MarkerTrigger>().quntity = AI_Information.quantity;
+            hutManager.hut3.hutMarker.GetComponent<MarkerTrigger>().quantity = AI_Information.quantity;
             hutManager.hut3.hutMarker.GetComponent<MarkerTrigger>().customer = this;
         }
         if (AI_Information.hutNo == 4)
         {
             hutManager.hut4.hutMarker.SetActive(true);
             hutManager.hut4.hutMarker.GetComponent<MarkerTrigger>().foodName = AI_Information.foodOrder;
-            hutManager.hut4.hutMarker.GetComponent<MarkerTrigger>().quntity = AI_Information.quantity;
+            hutManager.hut4.hutMarker.GetComponent<MarkerTrigger>().quantity = AI_Information.quantity;
             hutManager.hut4.hutMarker.GetComponent<MarkerTrigger>().customer = this;
         }
         if (AI_Information.hutNo == 5)
         {
             hutManager.hut5.hutMarker.SetActive(true);
             hutManager.hut5.hutMarker.GetComponent<MarkerTrigger>().foodName = AI_Information.foodOrder;
-            hutManager.hut5.hutMarker.GetComponent<MarkerTrigger>().quntity = AI_Information.quantity;
+            hutManager.hut5.hutMarker.GetComponent<MarkerTrigger>().quantity = AI_Information.quantity;
             hutManager.hut5.hutMarker.GetComponent<MarkerTrigger>().customer = this;
         }
     }
@@ -356,7 +356,7 @@ public class CustomerAI : MonoBehaviour
 
     public void PlayRequirementSound()
     {
-                SoundManager.Instance.PlayAISound(AI_Information.Gender, AI_Information.isKid, AI_Information.foodOrder);
+        SoundManager.Instance.PlayAISound(AI_Information.Gender, AI_Information.isKid, AI_Information.foodOrder);
     }
     public void PlayFeedbackSound()
     {
@@ -394,19 +394,19 @@ public class CustomerAI : MonoBehaviour
             LevelManager.Instance.customerId.Add(AI_Information.custNumber);
 
         }
-        int FoodCost= AI_Information.amountToPay;
-       
+        int FoodCost = AI_Information.amountToPay;
+
         AI_Information.isServed = true;
-       // Debug.Log("New coins are" + newCoins);
+        // Debug.Log("New coins are" + newCoins);
         if (GameManager.Instance.garbageStatus != 0)
         {
             DirtDetected(GameManager.Instance.garbageStatus);
-        coinsDedecuted = (int)(AI_Information.amountToPay * (AI_Information.cointDeduction / 100));
+            coinsDedecuted = (int)(AI_Information.amountToPay * (AI_Information.cointDeduction / 100));
             Debug.Log(coinsDedecuted);
             //Sirf Amount
-        AI_Information.amountToPay = AI_Information.amountToPay - coinsDedecuted;
-        if (coinsDedecuted > 0)
-            TextManager.Instance.ShowToast("Coins dedecuted due to dirt" + coinsDedecuted, 2);
+            AI_Information.amountToPay = AI_Information.amountToPay - coinsDedecuted;
+            if (coinsDedecuted > 0)
+                TextManager.Instance.ShowToast("Coins dedecuted due to dirt" + coinsDedecuted, 2);
             if (LevelManager.Instance.customerId.Contains(AI_Information.custNumber))
             {
                 LevelManager.Instance.totalDeducted += coinsDedecuted;
@@ -422,17 +422,17 @@ public class CustomerAI : MonoBehaviour
         {
             LevelManager.Instance.coinsDueToUpgrade += CoinsIncreaseDueToUpgrade();
         }
-        TextSpeech.TextToSpeech.Instance.StartSpeak(AI_Information.amountToPay+ " Coins Received from "+ AI_Information.name);
-       
-        
-        TextManager.Instance.CaptionTextHandler(AI_Information.name," Food Cost- " + FoodCost +" Coins"+ "<br> Rating- " + ratingStar + "<br>Deduction- " + coinsDedecuted + " <br> Extra Vibes- " + CoinsIncreaseDueToUpgrade() + "<br> Total Paid- " + AI_Information.amountToPay, Color.red, true);
+        TextSpeech.TextToSpeech.Instance.StartSpeak(AI_Information.amountToPay + " Coins Received from " + AI_Information.name);
+
+
+        TextManager.Instance.CaptionTextHandler(AI_Information.name, " Food Cost- " + FoodCost + " Coins" + "<br> Rating- " + ratingStar + "<br>Deduction- " + coinsDedecuted + " <br> Extra Vibes- " + CoinsIncreaseDueToUpgrade() + "<br> Total Paid- " + AI_Information.amountToPay, Color.red, true);
         LevelManager.Instance.AddCoins(AI_Information.amountToPay);
         if (LevelManager.Instance.customerId.Contains(AI_Information.custNumber))
         {
             LevelManager.Instance.finalAmount += AI_Information.amountToPay;
         }
-		
-		 if (AI_Information.hutNo == 1)
+
+        if (AI_Information.hutNo == 1)
         {
             hutManager.hut1.cashToPay = 0;
             hutManager.hut1.customer = null;
@@ -500,7 +500,7 @@ public class CustomerAI : MonoBehaviour
         }
 
         Invoke("ResetValues", 2);
-      
+
 
     }
 
@@ -516,7 +516,7 @@ public class CustomerAI : MonoBehaviour
     {
         theAgent.enabled = true;
         theAgent.SetDestination(destinations.endPlace.transform.position);
-        
+
     }
 
     public void ResetValues()
@@ -562,22 +562,22 @@ public class CustomerAI : MonoBehaviour
 
     public void DirtDetected(int count)
     {
-            switch (count)
-            {
-                case 2:
-                case 3:
-                    AI_Information.cointDeduction = 10f;
-                    break;
-                case 4:
-                case 5:
-                    AI_Information.cointDeduction = 15f;
-                    break;
-                case 6:
-                case 7:
-                    AI_Information.cointDeduction = 20f;
-                    break;
+        switch (count)
+        {
+            case 2:
+            case 3:
+                AI_Information.cointDeduction = 10f;
+                break;
+            case 4:
+            case 5:
+                AI_Information.cointDeduction = 15f;
+                break;
+            case 6:
+            case 7:
+                AI_Information.cointDeduction = 20f;
+                break;
 
-            }
-        
+        }
+
     }
 }

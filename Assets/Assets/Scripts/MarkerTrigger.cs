@@ -6,7 +6,7 @@ public class MarkerTrigger : MonoBehaviour
 {
 
     public string foodName;
-    public int quntity;
+    public int quantity;
    public  CustomerAI customer;
   
     void Start()
@@ -33,7 +33,7 @@ public class MarkerTrigger : MonoBehaviour
                     StockInventory.Instance.UpdateFoodStockUI();
                     customer.ServeFood();
                     foodName = "";
-                    quntity = 0;
+                    quantity = 0;
                     PlayerFoodHandling.Instance.RemoveFood("UniversalFood");
                     Debug.Log("COnditions Satisfied");
                     TextManager.Instance.ShowToast("FOOD SERVED", 3);
@@ -54,28 +54,28 @@ public class MarkerTrigger : MonoBehaviour
     {
 		Debug.Log("FoodName: "+foodName);
         if(foodName == "Samosa")
-        if (StockInventory.Instance.currentFoodStocks.samosa >= quntity)
+        if (StockInventory.Instance.currentFoodStocks.samosa >= quantity)
         {
 			Debug.Log("Samosa is less than needed");
                 return true;
         }
 
         if (foodName == "Tea")
-            if (StockInventory.Instance.currentFoodStocks.tea >= quntity)
+            if (StockInventory.Instance.currentFoodStocks.tea >= quantity)
             {
 				Debug.Log("Tea is less than needed");
                 return true;
             }
 
         if (foodName == "PaneerTikka")
-            if (StockInventory.Instance.currentFoodStocks.paneerTikka >= quntity)
+            if (StockInventory.Instance.currentFoodStocks.paneerTikka >= quantity)
             {
 				Debug.Log("PTikka is less than needed");
                 return true;
             }
 
         if (foodName == "Pakora")
-            if (StockInventory.Instance.currentFoodStocks.pakora >= quntity)
+            if (StockInventory.Instance.currentFoodStocks.pakora >= quantity)
             {
 				Debug.Log("Pakora is less than needed");
                 return true;
@@ -89,17 +89,17 @@ public class MarkerTrigger : MonoBehaviour
     void SubtractFoodItems()
     {
         if (foodName == "Samosa")
-            StockInventory.Instance.currentFoodStocks.samosa -= quntity;
+            StockInventory.Instance.currentFoodStocks.samosa -= quantity;
 
         if (foodName == "Tea")
-            StockInventory.Instance.currentFoodStocks.tea -= quntity;
+            StockInventory.Instance.currentFoodStocks.tea -= quantity;
 
 
         if (foodName == "PaneerTikka")
-            StockInventory.Instance.currentFoodStocks.paneerTikka -= quntity;
+            StockInventory.Instance.currentFoodStocks.paneerTikka -= quantity;
 
         if (foodName == "Pakora")
-            StockInventory.Instance.currentFoodStocks.pakora -= quntity;
+            StockInventory.Instance.currentFoodStocks.pakora -= quantity;
             
                
     }   
