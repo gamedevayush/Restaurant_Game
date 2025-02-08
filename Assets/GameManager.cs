@@ -195,6 +195,18 @@ public class GameManager : MonoBehaviour
 
     
     }
+
+    public void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            Time.timeScale = Time.timeScale * 2;
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            Time.timeScale = Time.timeScale / 2;
+        }
+    }
 }
 
 
