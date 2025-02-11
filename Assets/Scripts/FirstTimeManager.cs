@@ -89,6 +89,7 @@ public class FirstTimeManager : MonoBehaviour
         {
             EndTutorial(); // End the tutorial if all steps are completed
         }
+        currentStepIndex++;
     }
     public void OnNextButtonClicked()
     {
@@ -96,7 +97,6 @@ public class FirstTimeManager : MonoBehaviour
         {
             return;
         }
-        currentStepIndex++;
         ShowStep(currentStepIndex);
     }
 

@@ -275,7 +275,7 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    void ShowEndScreen()
+    public void ShowEndScreen()
     {
         BGSound.SetActive(false);
         totalDeductedtext.text = totalDeducted.ToString();
