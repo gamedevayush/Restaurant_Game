@@ -33,13 +33,13 @@ public class GetVehicle : MonoBehaviour
 
     void Start()
     {
-        ResetGaadi();
+        ResetVehicle();
         currentVehicle = GameManager.Instance.currentVehicleUpgrade;
         Debug.Log(currentVehicle);
         CurrVehicle[currentVehicle - 1].SetActive(true);
-        this.GetComponent<Animator>().speed = speeds[currentVehicle - 1];
+        this.GetComponent<Animation>()["VehicleAnim"].speed = speeds[currentVehicle - 1];
     }
-    void ResetGaadi()
+    void ResetVehicle()
     {
         for (int i = 0; i < CurrVehicle.Length; i++)
         {
@@ -48,17 +48,17 @@ public class GetVehicle : MonoBehaviour
     }
     public void Restart()
     {
-        ResetGaadi();
+        ResetVehicle();
         currentVehicle = GameManager.Instance.currentVehicleUpgrade;
         Debug.Log(currentVehicle);
         
         CurrVehicle[currentVehicle - 1].SetActive(true);
-        this.GetComponent<Animator>().speed = speeds[currentVehicle - 1];
+        this.GetComponent<Animation>()["VehicleAnim"].speed = speeds[currentVehicle - 1];
     }
     public void StartRide()
     {
-        this.GetComponent<Animator>().Play("VehicleAnim");
-        
+        this.GetComponent<Animation>().Play();
+
         canPlay = true;
     }
 
@@ -80,11 +80,11 @@ public class GetVehicle : MonoBehaviour
             speeding = true;
             if(canPlay)
                 tap.Play();
-            float temp = this.GetComponent<Animator>().speed;
+            float temp = this.GetComponent<Animation>()["VehicleAnim"].speed;
             Debug.Log(temp);
-            this.GetComponent<Animator>().speed += acceleration;
+            this.GetComponent<Animation>()["VehicleAnim"].speed += acceleration;
             yield return new WaitForSeconds(0.2f);
-            this.GetComponent<Animator>().speed = temp;
+            this.GetComponent<Animation>()["VehicleAnim"].speed = temp;
             
             speeding = false;
         }
