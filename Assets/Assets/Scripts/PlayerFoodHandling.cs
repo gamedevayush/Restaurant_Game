@@ -53,18 +53,6 @@ public class PlayerFoodHandling : MonoBehaviour
         anim = this.GetComponent<Animator>();
        // PickFood("Tea");
     }
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     private void OnAnimatorIK(int layerIndex)
     {
         if (currentFood == "Samosa")

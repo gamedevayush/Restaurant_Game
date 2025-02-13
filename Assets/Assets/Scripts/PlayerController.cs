@@ -24,9 +24,6 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     public float runSpeed = 2.0f;
     public float smoothRotationTime = 0.25f;
-    float currentVelocity, currentSpeed, speedVelocity; //Just required by a function for calculation purposes
-    Rigidbody rb;
-
     void Start()
     {
         playerCamera = Camera.main.transform;
@@ -34,11 +31,9 @@ public class PlayerController : MonoBehaviour
         anim = this.GetComponent<Animator>();
         SetDestination(Destinations[7]);
         transform.rotation = new Quaternion(0, 180, 0, 1);
-        rb = this.GetComponent<Rigidbody>();
         theAgent.updateRotation = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isMoving && agentActive)
@@ -49,39 +44,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Vector2 joystickInput = Vector2.zero;
-        Vector2 keyboardInput = Vector2.zero;
-
-        //  joystickInput = new Vector2(joystick.input.x ,joystick.input.y);
-
-
-        //keyboardInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        Vector2 inputDir = joystickInput.normalized + keyboardInput.normalized;
-
-        if (inputDir != Vector2.zero)
-        {
-            agentActive = false;
-            theAgent.enabled = false;
-            float rotation = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
-
-            // Clamp the rotation between the minimum and maximum angles
-            rotation = Mathf.Clamp(rotation, minRotationAngle, maxRotationAngle);
-
-            // Calculate the clamped target rotation based on the initial rotation
-            float targetRotation = Mathf.DeltaAngle(transform.eulerAngles.y, rotation) + transform.eulerAngles.y;
-
-            // Apply the rotation to the object's y-axis
-            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref currentVelocity, smoothRotationTime);
-        }
-
-        float targetSpeed = runSpeed * inputDir.magnitude;
-        currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedVelocity, 0.1f);
-
-        transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
-
-
-        if (theAgent.velocity != Vector3.zero || inputDir != Vector2.zero)
+        if (theAgent.velocity != Vector3.zero)
         {
             anim.SetBool("Move", true);
             isMoving = true;
@@ -91,33 +54,8 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Move", false);
             isMoving = false;
         }
-
-        // if(trackPath)
-        // GetPath();
     }
 
-    public void GetPath()
-    {
-        if (theAgent.path.corners.Length < 2) //if the path has 1 or no corners, there is no need
-            return;
-
-        for (int i = 0; i < theAgent.path.corners.Length; i++)
-        {
-
-            if (Vector3.Distance(theAgent.path.corners[i], transform.position) <= 0.1f && i < theAgent.path.corners.Length - 1)
-            {
-                transform.LookAt(theAgent.path.corners[i + 1]);
-                Debug.Log("Reachde");
-                continue;
-            }
-            if (Vector3.Distance(this.transform.position, theAgent.destination) <= 0.1f)
-            {
-                trackPath = false;
-            }
-        }
-
-
-    }
 
     public void MoveTo(string placeName)
     {
@@ -209,8 +147,6 @@ public class PlayerController : MonoBehaviour
     {
 
         trackPath = true;
-        //transform.LookAt(destination.transform.position);
-        Debug.Log("This", gameObject);
         theAgent.SetDestination(destination.position);
 
     }
