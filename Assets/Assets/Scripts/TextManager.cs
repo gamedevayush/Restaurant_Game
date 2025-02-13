@@ -90,29 +90,29 @@ public class TextManager : MonoBehaviour
     }
 
     public void CaptionTextHandler(string headingText, string incomingText, Color colorShade, bool popup)
-    {
+    {/*
         if (isCaptionBusy)
         {
             QueueCaption(headingText, incomingText, colorShade, popup);
             return;
         }
-
+*/
         StartCoroutine(RevealText(headingText, incomingText, colorShade, popup));
     }
 
-    private void QueueCaption(string headingText, string incomingText, Color colorShade, bool popup)
+   /* private void QueueCaption(string headingText, string incomingText, Color colorShade, bool popup)
     {
         tempHeading = headingText;
         tempIncomingText = incomingText;
         tempColorShad = colorShade;
         tempPopup = popup;
         Invoke(nameof(StartCaption), 5f);
-    }
+    }*/
 
-    private void StartCaption()
+ /*   private void StartCaption()
     {
         CaptionTextHandler(tempHeading, tempIncomingText, tempColorShad, tempPopup);
-    }
+    }*/
 
     private IEnumerator RevealText(string headingText, string textContent, Color colorShade, bool popup)
     {

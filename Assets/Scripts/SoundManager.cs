@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
 {
     public AudioSource player;
     public AudioClip TapSound;
+    public AudioClip Tap2Sound;
     public AudioClip SuccessSound;
     public AudioClip FailSound;
     public AudioClip TingSound;
@@ -39,6 +40,10 @@ public class SoundManager : MonoBehaviour
         if (name == "tap")
         {
             player.clip = TapSound;
+        }
+        if (name == "tap2")
+        {
+            player.clip = Tap2Sound;
         }
         if (name == "success")
         {

@@ -20,6 +20,7 @@ public class MenuManager : MonoBehaviour
 	public GameObject TextViewMenu;
 	public GameObject OpenkitchenMenu;
 	public GameObject PauseMenu;
+	//public GameObject ExtraMenu;
 	
 	
 
@@ -107,6 +108,7 @@ public class MenuManager : MonoBehaviour
 		TextViewMenu.SetActive(false);
 		OpenkitchenMenu.SetActive(false);
 		PauseMenu.SetActive(false);
+		//ExtraMenu.SetActive(false);
 		Time.timeScale=1;
 		AudioListener.pause = false;
 	}

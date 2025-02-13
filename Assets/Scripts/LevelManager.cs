@@ -58,6 +58,7 @@ public class LevelManager : MonoBehaviour
     public Text coinsText;
     public TMP_Text coinTextBoxinFinal;
     public GameObject[] TutorialGO;
+    public GameObject[] TutorialNotGO;
     public int timeSpeed;
     public int totalPayable, totalDeducted, finalAmount, coinsDueToUpgrade;
     public TMP_Text totalPayabletext, totalDeductedtext, finalAmountexy, coinsDueToUpgradetext;
@@ -95,12 +96,20 @@ public class LevelManager : MonoBehaviour
             {
                 TutorialGO[i].SetActive(true);
             }
+            for (int i = 0; i < TutorialNotGO.Length; i++)
+            {
+                TutorialNotGO[i].SetActive(false);
+            }
         }
         else
         {
             for (int i = 0; i < TutorialGO.Length; i++)
             {
                 TutorialGO[i].SetActive(false);
+            }
+            for (int i = 0; i < TutorialNotGO.Length; i++)
+            {
+                TutorialNotGO[i].SetActive(true);
             }
         }
         coins = 0;

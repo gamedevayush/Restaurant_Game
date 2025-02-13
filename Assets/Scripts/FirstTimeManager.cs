@@ -37,7 +37,7 @@ public class FirstTimeManager : MonoBehaviour
     public void StartTutorial()
     {
         currentStepIndex = 0; // Start at the first step
-        nextButton.onClick.AddListener(OnNextButtonClicked); // Add listener to the Next button
+        //nextButton.onClick.AddListener(OnNextButtonClicked); // Add listener to the Next button
         ShowStep(currentStepIndex); // Show the first step
 
     }
@@ -51,7 +51,7 @@ public class FirstTimeManager : MonoBehaviour
         if (stepIndex < tutorialSteps.Count)
         {
             TutorialStep step = tutorialSteps[stepIndex];
-
+            nextButton.gameObject.SetActive(false);
             // Update tutorial text
             tm.CaptionTextHandler("Tutorial", step.stepDescription, Color.cyan, false);
             bgImage.material.SetVector("_ClearArea", step.clearArea);
@@ -83,14 +83,37 @@ public class FirstTimeManager : MonoBehaviour
             }
 
             // Handle Next button visibility
-            nextButton.gameObject.SetActive(step.requiresNextButton);
+            if (step.requiresNextButton)
+            {
+                CancelInvoke(nameof(ShowNextButton));
+                if (step.highlightObject== null)
+                {
+                    Invoke(nameof(ShowNextButton), 2);
+                }
+                else
+                {
+                    Invoke(nameof(ShowNextButton), 5);
+                }
+            }
+            else
+            {
+                nextButton.gameObject.SetActive(false);
+            }
         }
         else
         {
-            EndTutorial(); // End the tutorial if all steps are completed
+            EndTutorial();
         }
         currentStepIndex++;
     }
+
+    void ShowNextButton()
+    {
+        nextButton.gameObject.SetActive(true);
+        HighlightObject(nextButton.transform.GetChild(0).transform);
+    }
+
+
     public void OnNextButtonClicked()
     {
         if (GameManager.Instance.isLearnt())
