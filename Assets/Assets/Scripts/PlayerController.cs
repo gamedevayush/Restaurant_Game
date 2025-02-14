@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float minRotationAngle = -90f; // Minimum allowed rotation angle (in degrees)
     public float maxRotationAngle = 90f;
     public Transform playerCamera;
+    public Transform startPos;
     public FixedJoystick joystick;
     public NavMeshAgent theAgent;
     [HideInInspector()]
@@ -32,6 +33,14 @@ public class PlayerController : MonoBehaviour
         SetDestination(Destinations[7]);
         transform.rotation = new Quaternion(0, 180, 0, 1);
         theAgent.updateRotation = true;
+        SetIntialPos();
+    }
+
+    public void SetIntialPos()
+    {
+        transform.position = startPos.transform.position;
+        GetComponent<PlayMakerFSM>().SendEvent("Initial");
+        SetDestination(Destinations[7]);
     }
 
     void Update()
@@ -150,8 +159,4 @@ public class PlayerController : MonoBehaviour
         theAgent.SetDestination(destination.position);
 
     }
-
-
-
-
 }

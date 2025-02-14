@@ -23,12 +23,12 @@ public class VehicleStarter : MonoBehaviour
    public void GenerateNextVehicle()
     {
       
-        int RandomVehicle = Random.Range(0, prefabs.vehicleArray.Length);
+      /*  int RandomVehicle = Random.Range(0, prefabs.vehicleArray.Length);
         GameObject vehicles = FindInActiveObjectByName("Vehicles");
         GameObject newVehicle = GameObject.Instantiate(prefabs.vehicleArray[RandomVehicle], this.transform.position,Quaternion.identity);
         newVehicle.GetComponent<Vehicle>().starter = this.gameObject;
         newVehicle.GetComponent<NavMeshAgent>().SetDestination(destination.transform.position);
-        newVehicle.transform.parent = vehicles.transform;
+        newVehicle.transform.parent = vehicles.transform;*/
        
     }
 

@@ -82,8 +82,6 @@ public class LevelManager : MonoBehaviour
         currentReached++;
         currentRating += opinion;
         CheckLevel();
-        Debug.Log(currentRating);
-
     }
 
 
@@ -117,8 +115,6 @@ public class LevelManager : MonoBehaviour
         coinTextBoxinFinal.text = "";
         levelStarted = false;
         Time.timeScale = timeSpeed;
-        //SetLevel(LevelNo);
-        //customerGenerator.GenerateCustomer(currentLevel.totalCustomers);
     }
     private void Update()
     {
@@ -191,6 +187,7 @@ public class LevelManager : MonoBehaviour
     }
     public void SetLevel(int levelNumber)
     {
+        timecurrent = 0;
         TextManager.Instance.CloseCaptions();
         if (GameManager.Instance.isLearnt() == true)
         {
@@ -211,16 +208,19 @@ public class LevelManager : MonoBehaviour
         LevelNumb.text = "LEVEL " + currentLevel.levelNum.ToString(); ;
 
         CustNeedToSpawn = currentLevel.totalCustomers;
+        PC.GetComponent<PlayerController>().SetIntialPos();
         AdmobController.Instance.ShowInterstitialAd();
     }
     public void StartLevel()
     {
+        timecurrent = 0;
         foreach (VehicleStarter starter in vehicleStarer)
         {
             starter.GenerateNextVehicle();
 
         }
         PC.GetComponent<PlayerController>().enabled = true;
+        PC.GetComponent<PlayerController>().SetIntialPos();
         joyStick.SetActive(true);
         MenuManager.Instance.ChangeMenu("side");
         StartCoroutine(SpawnCust());
@@ -345,7 +345,6 @@ public class LevelManager : MonoBehaviour
         }
         if (currentRating >= currentLevel.avgRatingReq)
         {
-
             SoundManager.Instance.PlaySound("success");
             statusText.text = "Level Passed";
             Debug.Log(currentLevel.levelNum);
@@ -353,9 +352,8 @@ public class LevelManager : MonoBehaviour
             GameManager.Instance.AddCoins(500 * currentLevel.levelNum);
             GameManager.Instance.SaveLevel(currentLevel.levelNum);
             StopAllCoroutines();
-
         }
-
+        PC.GetComponent<PlayerController>().SetIntialPos();
     }
 
 
@@ -369,9 +367,6 @@ public class LevelManager : MonoBehaviour
         TimeOutScreenRatingCurrent.text = currentRating.ToString();
         TimeOutScreenCustRequired.text = currentLevel.totalCustomers.ToString();
         TimeOutScreenCustCurrent.text = currentReached.ToString();
-
-
-
 
         if (currentReached >= currentLevel.totalCustomers)
         {
@@ -393,9 +388,6 @@ public class LevelManager : MonoBehaviour
         }
         PC.GetComponent<PlayerController>().enabled = false;
         MenuManager.Instance.ResetAll();
+        PC.GetComponent<PlayerController>().SetIntialPos();
     }
-
-
-
-
 }

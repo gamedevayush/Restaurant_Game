@@ -13,16 +13,11 @@ public class GameManager : MonoBehaviour
     public int currentWallArtUpgrade;
     public int currentVehicleUpgrade;
     public int currentMachineUpgrade;
-	public int gamePlayCount;
-	
-	
-	
+    public int gamePlayCount;
     public int globalCoins;
     public int lastUnlockedLevel;
-	public TMP_Text coinText;
+    public TMP_Text coinText;
     public int garbageStatus = 0;
-
-
     public GameObject GarbageLayersParent;
     public GameObject ExtShopManager;
     private void Awake()
@@ -36,7 +31,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
     }
-    
+
 
     void Start()
     {
@@ -45,7 +40,7 @@ public class GameManager : MonoBehaviour
     }
     public void SaveLevel(int level)
     {
-       if(level < PlayerPrefs.GetInt("Level"))
+        if (level < PlayerPrefs.GetInt("Level"))
         {
             return;
         }
@@ -53,61 +48,61 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        PlayerPrefs.SetInt("Level", level+1);
-        Debug.Log("Saved level"+level);
-
+        PlayerPrefs.SetInt("Level", level + 1);
+        Debug.Log("Saved level" + level);
+        LoadUpgrades();
     }
-	public void SaveGamePlay()
-	{
-		int temp=PlayerPrefs.GetInt("GamePlayCount",0);
-		PlayerPrefs.SetInt("GamePlayCount", temp+1);
-	}
+    public void SaveGamePlay()
+    {
+        int temp = PlayerPrefs.GetInt("GamePlayCount", 0);
+        PlayerPrefs.SetInt("GamePlayCount", temp + 1);
+    }
 
     public void SaveTVUpgrade(int level)
     {
         PlayerPrefs.SetInt("TVUpgrade", level);
-		LoadUpgrades();
+        LoadUpgrades();
     }
     public void SaveHeartUpgrade(int level)
     {
         PlayerPrefs.SetInt("HeartUpgrade", level);
-		LoadUpgrades();
+        LoadUpgrades();
     }
     public void SaveSpeakerUpgrade(int level)
     {
         PlayerPrefs.SetInt("SpeakerUpgrade", level);
-		LoadUpgrades();
+        LoadUpgrades();
     }
     public void SaveVaseUpgrade(int level)
     {
         PlayerPrefs.SetInt("VaseUpgrade", level);
-		LoadUpgrades();
+        LoadUpgrades();
     }
     public void SaveWallArtUpgrade(int level)
     {
         PlayerPrefs.SetInt("WallArtUpgrade", level);
-		LoadUpgrades();
+        LoadUpgrades();
     }
     public void SaveVehicleUpgrade(int level)
     {
         PlayerPrefs.SetInt("VehicleUpgrade", level);
-		LoadUpgrades();
+        LoadUpgrades();
     }
     public void SaveMachineUpgrade(int level)
     {
         PlayerPrefs.SetInt("MachineUpgrade", level);
-		LoadUpgrades();
+        LoadUpgrades();
     }
     public void SaveGlobalCoins(int amount)
     {
         PlayerPrefs.SetInt("globalCoins", amount);
-		LoadUpgrades();
+        LoadUpgrades();
 
     }
-	public void SaveLearnt()
-	{
-		PlayerPrefs.SetInt("isLearnt",1);
-	}
+    public void SaveLearnt()
+    {
+        PlayerPrefs.SetInt("isLearnt", 1);
+    }
     public bool CheckLevel(int levelNo)
     {
         if (levelNo <= lastUnlockedLevel)
@@ -117,22 +112,22 @@ public class GameManager : MonoBehaviour
         else
             return false;
     }
-	
-	public bool isLearnt()
+
+    public bool isLearnt()
     {
-        if (PlayerPrefs.GetInt("isLearnt",0)==0)
+        if (PlayerPrefs.GetInt("isLearnt", 0) == 0)
         {
             return false;
         }
         else
             return true;
     }
-	
-	
+
+
     public void LoadUpgrades()
     {
-      
-        currentHeartUpgrade = PlayerPrefs.GetInt("HeartUpgrade",0);
+
+        currentHeartUpgrade = PlayerPrefs.GetInt("HeartUpgrade", 0);
         currentTVUpgrade = PlayerPrefs.GetInt("TVUpgrade", 0);
         currentMachineUpgrade = PlayerPrefs.GetInt("MachineUpgrade", 1);
         currentSpeakerUpgrade = PlayerPrefs.GetInt("SpeakerUpgrade", 0);
@@ -140,20 +135,20 @@ public class GameManager : MonoBehaviour
         currentVehicleUpgrade = PlayerPrefs.GetInt("VehicleUpgrade", 1);
         currentWallArtUpgrade = PlayerPrefs.GetInt("WallArtUpgrade", 0);
         globalCoins = PlayerPrefs.GetInt("globalCoins", 100);
-      
+
         ShowCoins(globalCoins);
-        lastUnlockedLevel = PlayerPrefs.GetInt("Level",1);
+        lastUnlockedLevel = PlayerPrefs.GetInt("Level", 1);
     }
     public void Reset()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-	
-	
-	public void AddCoins(int increaseBy)
-	{
-		ChangeCoinsTo(globalCoins+increaseBy);
-	}
+
+
+    public void AddCoins(int increaseBy)
+    {
+        ChangeCoinsTo(globalCoins + increaseBy);
+    }
 
     public void ShowCoins(int newCoins)
     {
@@ -163,39 +158,14 @@ public class GameManager : MonoBehaviour
     {
         coinText.text = newCoins.ToString();
         SaveGlobalCoins(newCoins);
-	}
-
-    /*IEnumerator changeValueOverTime(float fromVal, float toVal, float duration)
-{
-    float counter = 0f;
-
-    while (counter < duration)
-    {
-        if (Time.timeScale == 0)
-            counter += Time.unscaledDeltaTime;
-        else
-            counter += Time.deltaTime;
-
-        float val = Mathf.Lerp(fromVal, toVal, counter / duration);
-        Debug.Log("Val: " + val);
-		coinText.text=((int)val).ToString();
-        yield return null;
     }
-	
-}*/
-
-
     public void CleanEverything()
     {
-        for (int i =1; i <= GarbageLayersParent.transform.childCount; i++)
+        for (int i = 1; i <= GarbageLayersParent.transform.childCount; i++)
         {
-            GarbageLayersParent.transform.GetChild(i-1).GetComponent<DirtMaker>().Cleaner();
+            GarbageLayersParent.transform.GetChild(i - 1).GetComponent<DirtMaker>().Cleaner();
         }
-
-
-    
     }
-
     public void Update()
     {
         if (Input.GetKeyUp(KeyCode.S))
