@@ -12,23 +12,23 @@ public class OrderGoods : MonoBehaviour
     public TMP_Text totalPriceText;
     ItemHandler[] items;
     public GameObject ItemHolder;
-	bool isOnRoad;
-	 public GameObject button;
-	 public ReceiptGenerator currSlots;
-        private void Start()
+    bool isOnRoad;
+    public GameObject button;
+    public ReceiptGenerator currSlots;
+    private void Start()
     {
-		
+
 
     }
     public void OrderGooods()
     {
         items = ItemHolder.GetComponentsInChildren<ItemHandler>();
-		if(ItemHolder.transform.childCount==0)
-		{
-			return;
-		}
+        if (ItemHolder.transform.childCount == 0)
+        {
+            return;
+        }
         StartCoroutine(OrderGoooods());
-		
+
     }
 
     public void CloseShop()
@@ -38,7 +38,7 @@ public class OrderGoods : MonoBehaviour
             child.gameObject.GetComponent<ItemHandler>().RemoveMe();
 
         }
-		
+
     }
 
     IEnumerator OrderGoooods()
@@ -52,7 +52,7 @@ public class OrderGoods : MonoBehaviour
         if (!temp)
         {
             totalPrice = 0;
-            TextManager.Instance.ShowToast("Coins are not enough", 2);
+            ToastManager.Instance.ShowToast("Coins are not enough", 2);
             yield return new WaitForSeconds(0.1f);
             foreach (Transform child in ItemHolder.transform)
             {
@@ -62,7 +62,7 @@ public class OrderGoods : MonoBehaviour
         }
         else
         {
-            TextManager.Instance.ShowToast("Ordered", 2);
+            ToastManager.Instance.ShowToast("Ordered", 2);
             int newCoins = LevelManager.Instance.coins - totalPrice;
             totalPrice = 0;
             LevelManager.Instance.ChangeCoinsTo(newCoins);
@@ -77,7 +77,7 @@ public class OrderGoods : MonoBehaviour
         }
     }
 
-   
+
 
     public void VehicleReached()
     {/*
@@ -88,26 +88,26 @@ public class OrderGoods : MonoBehaviour
 					yield return new WaitForSeconds(1);
 					VehicleSlider.value=i+1;
 				}*/
-            TextManager.Instance.ShowToast("Recieved", 2);
-			SetButtonStatus(false);
-            SoundManager.Instance.PlaySound("horn");
-            TextManager.Instance.CaptiontextTime = 2;
-            TextManager.Instance.CaptionTextHandler("Notification", "Vehicle Reached! Check Inventory.", Color.blue, true);
+        ToastManager.Instance.ShowToast("Recieved", 2);
+        SetButtonStatus(false);
+        SoundManager.Instance.PlaySound("horn");
+        TextManager.Instance.CaptiontextTime = 2;
+        TextManager.Instance.CaptionTextHandler("Notification", "Vehicle Reached! Check Inventory.", Color.blue, true);
         for (int i = 0; i < items.Length; i++)
         {
             StockInventory.Instance.AddStocks(itemNames[i], quantities[i]);
-			Debug.Log(itemNames[i]);
-			Debug.Log(quantities[i]);
-            TextManager.Instance.ShowToast(quantities[i] + " " + itemNames[i] + " Ordered Recieved",2);
+            Debug.Log(itemNames[i]);
+            Debug.Log(quantities[i]);
+            ToastManager.Instance.ShowToast(quantities[i] + " " + itemNames[i] + " Ordered Recieved", 2);
         }
 
-  
+
 
     }
 
     public bool BuildFoood()
     {
-       
+
         itemNames = new string[items.Length + 1];
         quantities = new int[items.Length + 1];
 
@@ -121,27 +121,27 @@ public class OrderGoods : MonoBehaviour
 
         }
 
-        if (totalPrice >LevelManager.Instance.coins)
+        if (totalPrice > LevelManager.Instance.coins)
         {
-			Debug.Log("TotalPrice"+totalPrice+"HumpeCoins"+LevelManager.Instance.coins);
-			
-			
+            Debug.Log("TotalPrice" + totalPrice + "HumpeCoins" + LevelManager.Instance.coins);
+
+
             return false;
         }
 
-       // yield return new WaitForSeconds((GetVehicle.Instance.speeds[GetVehicle.Instance.currentVehicle - 1] / 25f) * 2);
-       
+        // yield return new WaitForSeconds((GetVehicle.Instance.speeds[GetVehicle.Instance.currentVehicle - 1] / 25f) * 2);
 
-		
+
+
 
         return true;
 
 
 
     }
-	
-	void SetButtonStatus(bool value)
-	{
-		button.SetActive(!value);
-	}
+
+    void SetButtonStatus(bool value)
+    {
+        button.SetActive(!value);
+    }
 }

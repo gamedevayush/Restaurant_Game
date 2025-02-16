@@ -14,7 +14,7 @@ public class KitchenPanel : MonoBehaviour
     public GameObject buildTray1, buildTray2, buildTray3, buildTray4, buildTray5;
     public Color forSatisfied;
     public GameObject openButton;
-    
+
 
     void Start()
     {
@@ -25,7 +25,10 @@ public class KitchenPanel : MonoBehaviour
         if (col.tag == "Player")
         {
             openButton.SetActive(true);
-            FindAnyObjectByType<FirstTimeManager>().ShowStep(33);
+            if (GameManager.Instance.isLearnt() == false)
+            {
+                FindAnyObjectByType<FirstTimeManager>().ShowStep(33);
+            }
         }
     }
     private void OnTriggerStay(Collider other)
@@ -136,7 +139,7 @@ public class KitchenPanel : MonoBehaviour
             buildTray.SetActive(false);
             PlayerFoodHandling.Instance.PickFood("UniversalFood");
             PlayerFoodHandling.Instance.itemName = hutData.item;
-            TextManager.Instance.ShowToast(hutData.item + " Is ADDED", 2);
+            ToastManager.Instance.ShowToast(hutData.item + " Is ADDED", 2);
             KPanel.SetActive(false);
         }
     }
@@ -148,7 +151,7 @@ public class KitchenPanel : MonoBehaviour
     {
         if (PlayerFoodHandling.Instance.currentFood.Equals("UniversalFood", System.StringComparison.OrdinalIgnoreCase))
         {
-            TextManager.Instance.ShowToast("You Already Have A Tray", 2);
+            ToastManager.Instance.ShowToast("You Already Have A Tray", 2);
             return;
         }
         CalculateHutInfo();

@@ -36,13 +36,13 @@ public class MarkerTrigger : MonoBehaviour
                     quantity = 0;
                     PlayerFoodHandling.Instance.RemoveFood("UniversalFood");
                     Debug.Log("COnditions Satisfied");
-                    TextManager.Instance.ShowToast("FOOD SERVED", 3);
+                    ToastManager.Instance.ShowToast("FOOD SERVED", 3);
                     this.gameObject.SetActive(false);
                 }
                 else
                 {
                     Debug.Log("Wrong Tray Delivered");
-                    TextManager.Instance.ShowToast("Wrong Tray", 1);
+                    ToastManager.Instance.ShowToast("Wrong Tray", 1);
                 }
             }
             else

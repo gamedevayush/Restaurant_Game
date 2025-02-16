@@ -220,7 +220,7 @@ public class LevelManager : MonoBehaviour
 
         }
         PC.GetComponent<PlayerController>().enabled = true;
-        PC.GetComponent<PlayerController>().SetIntialPos();
+        //PC.GetComponent<PlayerController>().SetIntialPos();
         joyStick.SetActive(true);
         MenuManager.Instance.ChangeMenu("side");
         StartCoroutine(SpawnCust());

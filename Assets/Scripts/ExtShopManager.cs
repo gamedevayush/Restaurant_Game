@@ -1149,7 +1149,7 @@ public class ExtShopManager : MonoBehaviour
 
     public void ShowMessage(string message, int time)
     {
-        TextManager.Instance.ShowToast(message, time);
+        ToastManager.Instance.ShowToast(message, time);
     }
 
     #endregion

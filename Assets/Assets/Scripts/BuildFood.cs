@@ -6,26 +6,26 @@ using UnityEngine.UI;
 public class BuildFood : MonoBehaviour
 {
     // Start is called before the first frame update
-    
+
     ItemHandler[] items;
     public string[] foodNames;
     public int[] quantities;
-	public float delayTime;
+    public float delayTime;
     public GameObject AOSliderHolder;
     public GameObject ItemHolder;
-	public GameObject foodingUI,nonFoodingUI;
+    public GameObject foodingUI, nonFoodingUI;
     public Slider foodSlider;
     public Slider foodSlider2;
-	public KitchenPanel kPanel;
+    public KitchenPanel kPanel;
 
     public AudioSource src;
-  
-	
+
+
     void Start()
     {
         foodingUI.SetActive(true);
-		nonFoodingUI.SetActive(false);
-       
+        nonFoodingUI.SetActive(false);
+
         foodSlider.value = 100f;
         foodSlider2.value = 100f;
         AOSliderHolder.SetActive(false);
@@ -45,70 +45,70 @@ public class BuildFood : MonoBehaviour
 
     public void BuildFoood()
     {
-		items = ItemHolder.GetComponentsInChildren<ItemHandler>();
-		if(items.Length==0)
-		{
-			return;
-		}
+        items = ItemHolder.GetComponentsInChildren<ItemHandler>();
+        if (items.Length == 0)
+        {
+            return;
+        }
         SetDelayTime();
-		StartCoroutine(foodDelay());
-		
-	}
-		
-	IEnumerator foodDelay()
-	{
-		items = ItemHolder.GetComponentsInChildren<ItemHandler>();
+        StartCoroutine(foodDelay());
+
+    }
+
+    IEnumerator foodDelay()
+    {
+        items = ItemHolder.GetComponentsInChildren<ItemHandler>();
         foodNames = new string[items.Length + 1];
         quantities = new int[items.Length + 1];
 
         for (int i = 0; i < items.Length; i++)
-        { 
+        {
             foodNames[i] = items[i].name;
             quantities[i] = items[i].quantity;
         }
-		foodingUI.SetActive(false);
-		nonFoodingUI.SetActive(true);
+        foodingUI.SetActive(false);
+        nonFoodingUI.SetActive(true);
         AOSliderHolder.SetActive(true);
-        TextManager.Instance.ShowToast("Starts Cooking", 2);
+        ToastManager.Instance.ShowToast("Starts Cooking", 2);
         src.Play();
 
-		foodSlider.maxValue=(int)delayTime;
-		foodSlider2.maxValue=(int)delayTime;
-		 for (int i = 0; i < items.Length; i++)
-        {		
-               FoodEngine.Instance.RemoveFoodIngre(foodNames[i], quantities[i]);	 
+        foodSlider.maxValue = (int)delayTime;
+        foodSlider2.maxValue = (int)delayTime;
+        for (int i = 0; i < items.Length; i++)
+        {
+            FoodEngine.Instance.RemoveFoodIngre(foodNames[i], quantities[i]);
         }
-		for(int i=0;i<delayTime;i++)
-		{
-		yield return new WaitForSeconds(1);
-		foodSlider.value=i+1;
-		foodSlider2.value=i+1;
-		}
+        for (int i = 0; i < delayTime; i++)
+        {
+            yield return new WaitForSeconds(1);
+            foodSlider.value = i + 1;
+            foodSlider2.value = i + 1;
+        }
 
         AOSliderHolder.SetActive(false);
         for (int i = 0; i < items.Length; i++)
-        {			
-				FoodEngine.Instance.AddFood(foodNames[i], quantities[i]);	
-				FoodCounter.Instance.AddFood(foodNames[i], quantities[i]);
-               
+        {
+            FoodEngine.Instance.AddFood(foodNames[i], quantities[i]);
+            FoodCounter.Instance.AddFood(foodNames[i], quantities[i]);
+
         }
-		kPanel.CalculateHutInfo();
-		kPanel.SetHutInfo();
+        kPanel.CalculateHutInfo();
+        kPanel.SetHutInfo();
         TextManager.Instance.CaptiontextTime = 2;
-        TextManager.Instance.CaptionTextHandler("Notification","Cooking Done! Check Kitchen to Serve!", Color.blue, true);
+        TextManager.Instance.CaptionTextHandler("Notification", "Cooking Done! Check Kitchen to Serve!", Color.blue, true);
         src.Stop();
 
         StockInventory.Instance.UpdateFoodStockUI();
-		closeButton();        
-		foodingUI.SetActive(true);
-		nonFoodingUI.SetActive(false);
+        closeButton();
+        foodingUI.SetActive(true);
+        nonFoodingUI.SetActive(false);
         ReceiptGenerator.Instance.CurrSlots = 0;
 
     }
     public void SetDelayTime()
     {
-        delayTime = 30f/(GameManager.Instance.currentMachineUpgrade+1);
-		Debug.Log("DelayTime"+delayTime);
+        delayTime = 30f / (GameManager.Instance.currentMachineUpgrade + 1);
+        Debug.Log("DelayTime" + delayTime);
     }
 
     public void PickFoood()
@@ -151,7 +151,7 @@ public class BuildFood : MonoBehaviour
             if (quantity > 0)
             {
                 FoodEngine.Instance.AddFood(name, quantity);
-                TextManager.Instance.ShowToast(name + " Is ADDED", 2);
+                ToastManager.Instance.ShowToast(name + " Is ADDED", 2);
             }
         }
 

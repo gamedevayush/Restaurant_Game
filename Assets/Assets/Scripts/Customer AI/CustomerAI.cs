@@ -406,7 +406,7 @@ public class CustomerAI : MonoBehaviour
             //Sirf Amount
             AI_Information.amountToPay = AI_Information.amountToPay - coinsDedecuted;
             if (coinsDedecuted > 0)
-                TextManager.Instance.ShowToast("Coins dedecuted due to dirt" + coinsDedecuted, 2);
+                ToastManager.Instance.ShowToast("Coins dedecuted due to dirt" + coinsDedecuted, 2);
             if (LevelManager.Instance.customerId.Contains(AI_Information.custNumber))
             {
                 LevelManager.Instance.totalDeducted += coinsDedecuted;

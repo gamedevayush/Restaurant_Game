@@ -13,10 +13,7 @@ public class TextManager : MonoBehaviour
     public GameObject TextHolder;
     public float CaptiontextTime = 5f;
     public GameObject CloseBtn;
-    private string tempHeading;
-    private string tempIncomingText;
-    private Color tempColorShad;
-    private bool tempPopup;
+   
     public bool isIntro;
 
     private bool isCaptionBusy;
@@ -41,54 +38,7 @@ public class TextManager : MonoBehaviour
         CloseBtn.SetActive(false);
         ClearText();
     }
-    public void ShowToast(string incomingText, int time)
-    {
-        if (string.IsNullOrEmpty(txt.text))
-        {
-            PlayFadeIn(incomingText);
-            Invoke(nameof(FadeOut), time);
-        }
-        else
-        {
-            QueueText(incomingText, time);
-        }
-    }
-
-    public void Show2SecondNotification(string incomingText)
-    {
-        ShowToast(incomingText, 2);
-    }
-
-    private void QueueText(string incomingText, int time)
-    {
-        tempText = incomingText;
-        tempTime = time;
-        Invoke(nameof(ChangePriority), 1f);
-    }
-
-    private void ChangePriority()
-    {
-        ShowToast(tempText, tempTime);
-    }
-
-    private void FadeOut()
-    {
-        ClearText();
-        PlayFadeOut();
-    }
-
-    private void PlayFadeIn(string text)
-    {
-        txt.text = text;
-        GetComponent<Animator>().Play("FadeIn");
-    }
-
-    private void PlayFadeOut()
-    {
-        txt.text = string.Empty;
-        GetComponent<Animator>().Play("FadeOut");
-    }
-
+  
     public void CaptionTextHandler(string headingText, string incomingText, Color colorShade, bool popup)
     {/*
         if (isCaptionBusy)

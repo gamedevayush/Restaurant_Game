@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public bool isMoving;
     [Header("Array Of Destinations")]
     public Transform[] Destinations;
-
+    private Transform lastdestination;
     [Header("Movement Settings")]
     public float runSpeed = 2.0f;
     public float smoothRotationTime = 0.25f;
@@ -52,7 +52,14 @@ public class PlayerController : MonoBehaviour
                 transform.LookAt(Destinations[currentDestination].transform.position);
             }
         }
+        if (agentActive && Vector3.Distance(theAgent.transform.position, lastdestination.position) < 0.07f)
+        {
+            agentActive = false;
+            theAgent.ResetPath(); // Clear path after reaching
+            Debug.Log("Reached");
 
+            return;
+        }
         if (theAgent.velocity != Vector3.zero)
         {
             anim.SetBool("Move", true);
@@ -154,9 +161,13 @@ public class PlayerController : MonoBehaviour
     }
     public void SetDestination(Transform destination)
     {
-
+        if (Vector3.Distance(theAgent.transform.position, destination.position) < 0.1f)
+        {
+            Debug.Log("Already at Destination, No Move Needed");
+            return;
+        }
         trackPath = true;
         theAgent.SetDestination(destination.position);
-
+        lastdestination = destination;
     }
 }

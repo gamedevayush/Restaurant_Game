@@ -10,19 +10,21 @@ public class ItemHandler : MonoBehaviour
     public int price;
     public int amount;
     public string SpriteName;
-	
 
-    public TMP_Text itsText;
+
+    public TMP_Text spriteName;
+    public TMP_Text quantityCount;
+    public TMP_Text priceCount;
     void Start()
     {
         //quantity = 0;
     }
 
-   
+
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void IncreaseQuantity(int Count)
@@ -43,19 +45,21 @@ public class ItemHandler : MonoBehaviour
     }
     void UpdateUI()
     {
-        itsText.text =  SpriteName + " \t \t " + quantity.ToString() + "\t \t \t" + (amount).ToString();
+        spriteName.text = SpriteName;
+        quantityCount.text = quantity.ToString();
+        priceCount.text = amount.ToString();
         ReceiptGenerator.Instance.MakeAmount();
     }
     public void RemoveMe()
     {
-                Destroy(gameObject,0.0f);
-        
+        Destroy(gameObject, 0.0f);
+
     }
-	
-	public void OnDestroy()
-	{
-	
-		ReceiptGenerator.Instance.MakeAmount();
-	}
- 
+
+    public void OnDestroy()
+    {
+
+        ReceiptGenerator.Instance.MakeAmount();
+    }
+
 }

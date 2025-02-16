@@ -31,7 +31,7 @@ public class GarbageCleaner : MonoBehaviour
             }
             else
             {
-                TextManager.Instance.ShowToast("You Recently Use Garbage Cleaner, Come back Later!", 5);
+                ToastManager.Instance.ShowToast("You Recently Use Garbage Cleaner, Come back Later!", 5);
             }
         }
 
