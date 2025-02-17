@@ -8,6 +8,7 @@ TagManager:
   - Traffic Vehicle
   - Customer
   - TrafficVehicle
+  - foodModel
   layers:
   - Default
   - TransparentFX
