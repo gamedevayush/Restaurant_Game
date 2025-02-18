@@ -71,7 +71,8 @@ public class BuildFood : MonoBehaviour
         AOSliderHolder.SetActive(true);
         ToastManager.Instance.ShowToast("Starts Cooking", 2);
         src.Play();
-
+        foodSlider.transform.gameObject.SetActive(true);
+        foodSlider2.transform.gameObject.SetActive(true);
         foodSlider.maxValue = (int)delayTime;
         foodSlider2.maxValue = (int)delayTime;
         for (int i = 0; i < items.Length; i++)
@@ -84,7 +85,8 @@ public class BuildFood : MonoBehaviour
             foodSlider.value = i + 1;
             foodSlider2.value = i + 1;
         }
-
+        foodSlider.transform.gameObject.SetActive(false);
+        foodSlider2.transform.gameObject.SetActive(false);
         AOSliderHolder.SetActive(false);
         for (int i = 0; i < items.Length; i++)
         {

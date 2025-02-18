@@ -98,7 +98,7 @@ public class OrderGoods : MonoBehaviour
             StockInventory.Instance.AddStocks(itemNames[i], quantities[i]);
             Debug.Log(itemNames[i]);
             Debug.Log(quantities[i]);
-            ToastManager.Instance.ShowToast(quantities[i] + " " + itemNames[i] + " Ordered Recieved", 2);
+            //ToastManager.Instance.ShowToast(quantities[i] + " " + itemNames[i] + " Ordered Recieved", 2);
         }
 
 

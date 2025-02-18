@@ -70,6 +70,7 @@ public class GetVehicle : MonoBehaviour
 
     public void SetSlider(float comingValue)
     {
+        VehicleSlider.transform.gameObject.SetActive(true);
         VehicleSlider.value = comingValue;
     }
 
@@ -94,6 +95,7 @@ public class GetVehicle : MonoBehaviour
     {
         OG.VehicleReached();
         canPlay = false;
+        VehicleSlider.transform.gameObject.SetActive(false);
     }
 
     public void SliderEffect()
@@ -106,7 +108,6 @@ public class GetVehicle : MonoBehaviour
 
         while (FillImage.color.a != 0.5f)
         {
-            Debug.Log("Chal");
             FillImage.color = Color.Lerp(color, color2, 0.2f);
         }
     }

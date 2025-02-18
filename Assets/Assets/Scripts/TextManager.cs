@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TextManager : MonoBehaviour
 {
@@ -13,11 +14,11 @@ public class TextManager : MonoBehaviour
     public GameObject TextHolder;
     public float CaptiontextTime = 5f;
     public GameObject CloseBtn;
-   
+
     public bool isIntro;
 
     private bool isCaptionBusy;
-
+    Coroutine closeMethod;
     public static TextManager Instance { get; private set; }
 
     private void Awake()
@@ -34,39 +35,22 @@ public class TextManager : MonoBehaviour
 
     private void Start()
     {
-        // TextHolder.SetActive(false);
         CloseBtn.SetActive(false);
         ClearText();
     }
-  
+
     public void CaptionTextHandler(string headingText, string incomingText, Color colorShade, bool popup)
-    {/*
-        if (isCaptionBusy)
+    {
+        if (closeMethod != null)
         {
-            QueueCaption(headingText, incomingText, colorShade, popup);
-            return;
+            StopCoroutine(closeMethod);
         }
-*/
-        StartCoroutine(RevealText(headingText, incomingText, colorShade, popup));
+        closeMethod = StartCoroutine(RevealText(headingText, incomingText, colorShade, popup));
     }
-
-   /* private void QueueCaption(string headingText, string incomingText, Color colorShade, bool popup)
-    {
-        tempHeading = headingText;
-        tempIncomingText = incomingText;
-        tempColorShad = colorShade;
-        tempPopup = popup;
-        Invoke(nameof(StartCaption), 5f);
-    }*/
-
- /*   private void StartCaption()
-    {
-        CaptionTextHandler(tempHeading, tempIncomingText, tempColorShad, tempPopup);
-    }*/
-
     private IEnumerator RevealText(string headingText, string textContent, Color colorShade, bool popup)
     {
         isCaptionBusy = true;
+        GetComponent<Image>().enabled = true;
         TextHolder.SetActive(true);
         Heading.text = headingText;
         Heading.color = colorShade;
@@ -113,6 +97,7 @@ public class TextManager : MonoBehaviour
         {
             ClearText();
             TextHolder.SetActive(false);
+            GetComponent<Image>().enabled = false;
             isCaptionBusy = false;
         }
     }

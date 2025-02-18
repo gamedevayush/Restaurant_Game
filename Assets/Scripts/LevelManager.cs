@@ -175,6 +175,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (CustNeedToSpawn > 0)
                 {
+                    ToastManager.Instance.ShowToast("Customers Incoming, Start your day!", 4);
                     customerGenerator.GenerateCustomer();
                 }
                 CustNeedToSpawn--;
