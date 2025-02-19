@@ -48,8 +48,8 @@ public class AdmobController : MonoBehaviour
     }
     void Start()
     {
-        return;
         AdScriptStarter();
+        //return;
     }
     void AdScriptStarter()
     {
@@ -101,7 +101,6 @@ public class AdmobController : MonoBehaviour
 
     public void OnAppStateChanged(AppState state)
     {
-        return;
         // Display the app open ad when the app is foregrounded.
         UnityEngine.Debug.Log("App State is " + state);
 
@@ -117,7 +116,6 @@ public class AdmobController : MonoBehaviour
 
     public void RequestAndLoadAppOpenAd()
     {
-        return;
         Debug.Log("Requesting App Open ad.");
 #if UNITY_EDITOR
         string adUnitId = "unused";
@@ -200,7 +198,6 @@ public class AdmobController : MonoBehaviour
 
     public void ShowAppOpenAd()
     {
-        return;
         if (!IsAppOpenAdAvailable)
         {
             return;
@@ -213,7 +210,6 @@ public class AdmobController : MonoBehaviour
 
     public void RequestBannerAd()
     {
-        return;
         Debugger("Requesting Banner ad.");
 
         // These ad units are configured to always serve test ads.
@@ -282,7 +278,6 @@ public class AdmobController : MonoBehaviour
 
     public void RequestAndLoadRewardedAd()
     {
-        return;
         Debugger("Requesting Rewarded ad.");
 #if UNITY_EDITOR
         string adUnitId = "unused";
@@ -393,7 +388,6 @@ public class AdmobController : MonoBehaviour
 
     public void ShowRewardedAd()
     {
-        return;
         if (rewardedAd != null)
         {
             rewardedAd.Show((Reward reward) =>
@@ -427,7 +421,6 @@ public class AdmobController : MonoBehaviour
 
     public void RequestAndLoadInterstitialAd()
     {
-        return;
         Debugger("Requesting Interstitial ad.");
 
 #if UNITY_EDITOR
@@ -501,7 +494,6 @@ public class AdmobController : MonoBehaviour
 
     public void ShowInterstitialAd()
     {
-        return;
         if (interstitialAd != null && interstitialAd.CanShowAd())
         {
             interstitialAd.Show();

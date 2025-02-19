@@ -1,39 +1,48 @@
-/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Unity.Notifications.Android;
 
 public class NotificationScript : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        CreateChannel();
-        //SendNotification();
+        CreateNotificationChannel();
     }
-    void CreateChannel()
+
+    void CreateNotificationChannel()
     {
-        var c = new AndroidNotificationChannel()
+        var channel = new AndroidNotificationChannel()
         {
-            Id = "channel_id",
-            Name = "Channel_Name",
-            Importance = Importance.Default,
-            Description = "Notification",
+            Id = "game_notifications",
+            Name = "Game Notifications",
+            Importance = Importance.High,
+            Description = "Game reminders and updates",
         };
-        AndroidNotificationCenter.RegisterNotificationChannel(c);
+
+        AndroidNotificationCenter.RegisterNotificationChannel(channel);
     }
-    void SendNotification()
+
+    void ScheduleNotification()
     {
-        var notification = new AndroidNotification();
-        notification.Title = "Customers are Waiting..";
-        notification.Text = "Mann Nahi hai Restaurant kholne ka?? Please Open the Shop";
-        notification.FireTime = System.DateTime.Now.AddSeconds(2);
-        AndroidNotificationCenter.SendNotification(notification, " channel_id");
+        var notification = new AndroidNotification()
+        {
+            Title = "Your Customers are Waiting!",
+            Text = "The restaurant is empty! Come back and keep your business running! 🍽",
+            FireTime = System.DateTime.Now.AddDays(1)
+    };
+
+        AndroidNotificationCenter.SendNotification(notification, "game_notifications");
     }
-    // Update is called once per frame
-    void Update()
+
+    void OnApplicationQuit()
     {
-        
+        ScheduleNotification(); // Set notification when player quits the game
+    }
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus) // Set notification when game goes to background
+        {
+            ScheduleNotification();
+        }
     }
 }
-*/

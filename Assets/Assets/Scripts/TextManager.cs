@@ -17,7 +17,6 @@ public class TextManager : MonoBehaviour
 
     public bool isIntro;
 
-    private bool isCaptionBusy;
     Coroutine closeMethod;
     public static TextManager Instance { get; private set; }
 
@@ -49,7 +48,6 @@ public class TextManager : MonoBehaviour
     }
     private IEnumerator RevealText(string headingText, string textContent, Color colorShade, bool popup)
     {
-        isCaptionBusy = true;
         GetComponent<Image>().enabled = true;
         TextHolder.SetActive(true);
         Heading.text = headingText;
@@ -77,7 +75,6 @@ public class TextManager : MonoBehaviour
         {
             CloseBtn.SetActive(false);
         }
-        isCaptionBusy = false;
     }
 
     private string GetRandomChar()
@@ -98,7 +95,6 @@ public class TextManager : MonoBehaviour
             ClearText();
             TextHolder.SetActive(false);
             GetComponent<Image>().enabled = false;
-            isCaptionBusy = false;
         }
     }
 

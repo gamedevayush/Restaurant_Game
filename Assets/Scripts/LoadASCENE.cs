@@ -17,15 +17,15 @@ public class LoadASCENE : MonoBehaviour
     public void OnStart(int k)
     {
        // audiopl = GetComponent<AudioSource>();
-        StartCoroutine(LoadingScreen(k));
+        StartCoroutine(LoadingScreen());
       //  audiopl.Play();
        // google.enabled = false;
     }
 
-    IEnumerator LoadingScreen(int k)
+    IEnumerator LoadingScreen()
     {
         loadingScreenObj.SetActive(true);
-        async = SceneManager.LoadSceneAsync(k);
+        async = SceneManager.LoadSceneAsync(1);
         async.allowSceneActivation = false;
 
         while (async.isDone == false)
