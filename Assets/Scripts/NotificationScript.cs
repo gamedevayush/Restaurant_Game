@@ -27,7 +27,7 @@ public class NotificationScript : MonoBehaviour
         {
             Title = "Your Customers are Waiting!",
             Text = "The restaurant is empty! Come back and keep your business running! 🍽",
-            FireTime = System.DateTime.Now.AddDays(1)
+            FireTime = System.DateTime.Now.AddMinutes(10)
     };
 
         AndroidNotificationCenter.SendNotification(notification, "game_notifications");

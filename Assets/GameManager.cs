@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         LoadUpgrades();
         SaveGamePlay();
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
     public void SaveLevel(int level)
     {
@@ -176,6 +177,11 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = Time.timeScale / 2;
         }
+    }
+    void OnApplicationQuit()
+    {
+        // Reset to system default when the app is closed
+        Screen.sleepTimeout = SleepTimeout.SystemSetting;
     }
 }
 

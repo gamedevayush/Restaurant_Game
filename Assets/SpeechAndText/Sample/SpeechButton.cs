@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System;
@@ -58,3 +58,4 @@ public class SpeechButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         sample.StopRecording();
     }
 }
+*/

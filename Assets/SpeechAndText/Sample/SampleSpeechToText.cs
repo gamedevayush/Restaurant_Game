@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using UnityEngine.UI;
 using TextSpeech;
 using UnityEngine.Android;
@@ -101,3 +101,4 @@ public class SampleSpeechToText : MonoBehaviour
         SpeechToText.Instance.isShowPopupAndroid = isShowPopupAndroid;
     }
 }
+*/

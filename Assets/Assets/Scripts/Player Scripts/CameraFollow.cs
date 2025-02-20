@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
     {
         // Handle input from mouse and touch
         float inputX = touchField.TouchDist.x * inputSensitivityPhone;
-        float inputZ = touchField.TouchDist.y * inputSensitivityPhone;
+        float inputZ = -touchField.TouchDist.y * inputSensitivityPhone;
         float mouseX = Input.GetAxis("Mouse X") * inputSensitivityMouse;
         float mouseY = Input.GetAxis("Mouse Y") * inputSensitivityMouse;
 

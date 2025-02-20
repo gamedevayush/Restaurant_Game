@@ -274,7 +274,7 @@ public class CustomerAI : MonoBehaviour
         }
         else
         {
-            TextSpeech.TextToSpeech.Instance.StartSpeak("Enteries in level Manager misMatch" + currentLevel.levelNum);
+            //TextSpeech.TextToSpeech.Instance.StartSpeak("Enteries in level Manager misMatch" + currentLevel.levelNum);
         }
 
         TextManager.Instance.CaptionTextHandler("Alert", "New Order Recieved from Hut No." + AI_Information.hutNo + "<br> Name- " + AI_Information.name + "<br>Order- " + AI_Information.foodOrder + " <br>Quantity- " + AI_Information.quantity + " . ", Color.red, true);
@@ -422,7 +422,7 @@ public class CustomerAI : MonoBehaviour
         {
             LevelManager.Instance.coinsDueToUpgrade += CoinsIncreaseDueToUpgrade();
         }
-        TextSpeech.TextToSpeech.Instance.StartSpeak(AI_Information.amountToPay + " Coins Received from " + AI_Information.name);
+        //TextSpeech.TextToSpeech.Instance.StartSpeak(AI_Information.amountToPay + " Coins Received from " + AI_Information.name);
 
 
         TextManager.Instance.CaptionTextHandler(AI_Information.name, " Food Cost- " + FoodCost + " Coins" + "<br> Rating- " + ratingStar + "<br>Deduction- " + coinsDedecuted + " <br> Extra Vibes- " + CoinsIncreaseDueToUpgrade() + "<br> Total Paid- " + AI_Information.amountToPay, Color.red, true);

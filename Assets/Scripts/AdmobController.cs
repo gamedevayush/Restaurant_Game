@@ -210,8 +210,8 @@ public class AdmobController : MonoBehaviour
 
     public void RequestBannerAd()
     {
+        return;
         Debugger("Requesting Banner ad.");
-
         // These ad units are configured to always serve test ads.
 #if UNITY_EDITOR
         string adUnitId = "unused";
@@ -268,6 +268,7 @@ public class AdmobController : MonoBehaviour
 
     public void DestroyBannerAd()
     {
+        return;
         if (bannerView != null)
         {
             bannerView.Destroy();

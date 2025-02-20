@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine.UI;
@@ -96,11 +96,11 @@ namespace TextSpeech
         {
 
         }
-        /** Denotes the language is available for the language by the locale, but not the country and variant. */
+        /***//* Denotes the language is available for the language by the locale, but not the country and variant. *//*
         public const int LANG_AVAILABLE = 0;
-        /** Denotes the language data is missing. */
+        *//***//* Denotes the language data is missing. *//*
         public const int LANG_MISSING_DATA = -1;
-        /** Denotes the language is not supported. */
+        *//***//* Denotes the language is not supported. *//*
         public const int LANG_NOT_SUPPORTED = -2;
         public void onSettingResult(string _params)
         {
@@ -128,4 +128,4 @@ namespace TextSpeech
         private static extern void _TAG_StopSpeak();
 #endif
     }
-}
+}*/
