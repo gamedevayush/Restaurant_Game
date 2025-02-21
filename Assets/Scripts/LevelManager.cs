@@ -390,6 +390,5 @@ public class LevelManager : MonoBehaviour
         PC.GetComponent<PlayerController>().enabled = false;
         MenuManager.Instance.ResetAll();
         PC.GetComponent<PlayerController>().SetIntialPos();
-        GameManager.Instance.Reset();
     }
 }

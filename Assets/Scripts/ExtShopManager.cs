@@ -1017,7 +1017,7 @@ public class ExtShopManager : MonoBehaviour
         {
             updateAvailbleImage.SetActive(true);
             TextManager.Instance.CaptiontextTime = 6f;
-            TextManager.Instance.CaptionTextHandler("Alert", "New Upgrades are Avaiable! <br> If You Don't Update , It may increase the Level time and may results in Level Failure!", Color.blue, true);
+            TextManager.Instance.CaptionTextHandler("Alert", "New Important Upgrades are Avaiable! <br>!", Color.blue, true);
 
         }
         else
