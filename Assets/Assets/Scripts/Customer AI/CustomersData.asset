@@ -19,14 +19,14 @@ MonoBehaviour:
   - {fileID: 6628254730503938855, guid: 001e5ead11c4ed64cae883d68a7c0f88, type: 3}
   - {fileID: 4027236719965073879, guid: aa80eabd487a05643b200c7e8593ef61, type: 3}
   maleCustomerNames:
-  - Saurabh
-  - Ravi
-  - Rahul
+  - Samay
   - Tanmay
+  - Raftaar
+  - Ranveer
   - Nikhil
   femaleCustomersNames:
-  - Ishani
-  - Radhika
+  - Rashika
+  - Gungun
   - 'Priya '
-  - Neha
-  - Swati
+  - Saroj
+  - Kajal
