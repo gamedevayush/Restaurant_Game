@@ -197,11 +197,11 @@ public class KitchenPanel : MonoBehaviour
         {
             if (!hutsManager.hut1.isAvailable)
             {
-                hut1UI.text = "Requirements Fullfilled";
+                hut1UI.text = "Fulfilled";
             }
             else
             {
-                hut1UI.text = "No Coustomer";
+                hut1UI.text = "Empty Hut";
             }
         }
 
@@ -211,11 +211,11 @@ public class KitchenPanel : MonoBehaviour
         {
             if (!hutsManager.hut2.isAvailable)
             {
-                hut2UI.text = "Requirements Fullfilled";
+                hut2UI.text = "Fulfilled";
             }
             else
             {
-                hut2UI.text = "No Coustomer";
+                hut2UI.text = "Empty Hut";
             }
         }
 
@@ -225,11 +225,11 @@ public class KitchenPanel : MonoBehaviour
         {
             if (!hutsManager.hut3.isAvailable)
             {
-                hut3UI.text = "Requirements Fullfilled";
+                hut3UI.text = "Fulfilled";
             }
             else
             {
-                hut3UI.text = "No Coustomer";
+                hut3UI.text = "Empty Hut";
             }
         }
 
@@ -239,11 +239,11 @@ public class KitchenPanel : MonoBehaviour
         {
             if (!hutsManager.hut4.isAvailable)
             {
-                hut4UI.text = "Requirements Fullfilled";
+                hut4UI.text = "Fulfilled";
             }
             else
             {
-                hut4UI.text = "No Coustomer";
+                hut4UI.text = "Empty Hut";
             }
         }
 
@@ -253,11 +253,11 @@ public class KitchenPanel : MonoBehaviour
         {
             if (!hutsManager.hut5.isAvailable)
             {
-                hut5UI.text = "Requirements Fullfilled";
+                hut5UI.text = "Fulfilled";
             }
             else
             {
-                hut5UI.text = "No Coustomer";
+                hut5UI.text = "Empty Hut";
             }
         }//Test kro bahiya 
     }
