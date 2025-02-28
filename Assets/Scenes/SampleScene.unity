@@ -43399,7 +43399,7 @@ MonoBehaviour:
     enableObjects:
     - {fileID: 603751930}
     - {fileID: 126374950}
-    - {fileID: 1904549313}
+    - {fileID: 3049597410261089533}
     - {fileID: 1211736786}
     - {fileID: 1744347923}
     - {fileID: 1689343359}
@@ -43603,7 +43603,7 @@ MonoBehaviour:
           m_MethodName: SetTarget
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2645362057810069591}
+            m_ObjectArgument: {fileID: 1257713685628531924}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -44298,7 +44298,7 @@ MonoBehaviour:
     customAction:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1904549315}
+        - m_Target: {fileID: 8645122207155862593}
           m_TargetAssemblyTypeName: PlayerFoodHandling, Assembly-CSharp
           m_MethodName: PickFood
           m_Mode: 5
@@ -44404,7 +44404,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1904549315}
+        - m_Target: {fileID: 8645122207155862593}
           m_TargetAssemblyTypeName: PlayerFoodHandling, Assembly-CSharp
           m_MethodName: PickFood
           m_Mode: 5
@@ -44464,9 +44464,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1904549318}
-          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-          m_MethodName: set_enabled
+        - m_Target: {fileID: 3049597410261089533}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -51979,7 +51979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &427338528
 Transform:
   m_ObjectHideFlags: 0
@@ -190947,7 +190947,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644485782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalPosition: {x: 0, y: 0, z: -0.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -190970,7 +190970,7 @@ MonoBehaviour:
   maxDistance: 0.5
   smooth: 10
   dollyDirAdjusted: {x: 0, y: 0, z: 0}
-  distance: 0
+  distance: 0.5
 --- !u!81 &1644485785
 AudioListener:
   m_ObjectHideFlags: 0
@@ -201427,9 +201427,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736922704}
-  m_LocalRotation: {x: -0, y: -0.012832833, z: 0, w: 0.99991775}
-  m_LocalPosition: {x: 0.50031954, y: -0.317, z: 3.000423}
-  m_LocalScale: {x: 1.327463, y: 1.327463, z: 1.327463}
+  m_LocalRotation: {x: -0.013365356, y: 0.69772094, z: -0.011030286, w: -0.7161601}
+  m_LocalPosition: {x: 0.3486801, y: -0.104647234, z: 2.5550008}
+  m_LocalScale: {x: 0.20523489, y: 0.20523487, z: 0.20523478}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 126374951}
