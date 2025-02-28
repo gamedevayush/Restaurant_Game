@@ -78,8 +78,8 @@ public class MenuManager : MonoBehaviour
 		if (name == "side")
 		{
 			SideMenu.SetActive(true);
-			HeaderMenu.SetActive(true);
-			AOGMenu.SetActive(true);
+			//HeaderMenu.SetActive(true);
+			//AOGMenu.SetActive(true);
 		}
 		if (name == "pickup")
 		{
