@@ -16,7 +16,6 @@ public class MenuManager : MonoBehaviour
 	public GameObject HeaderMenu;
 	public GameObject AOGMenu;
 	public GameObject StatusMenu;
-	public GameObject MapViewMenu;
 	public GameObject TextViewMenu;
 	public GameObject OpenkitchenMenu;
 	public GameObject PauseMenu;
@@ -104,7 +103,7 @@ public class MenuManager : MonoBehaviour
 		PickupMenu.SetActive(false);
 		TransformMenu.SetActive(false);
 		StatusMenu.SetActive(false);
-		MapViewMenu.SetActive(false);
+		//MapViewMenu.SetActive(false);
 		TextViewMenu.SetActive(false);
 		OpenkitchenMenu.SetActive(false);
 		PauseMenu.SetActive(false);

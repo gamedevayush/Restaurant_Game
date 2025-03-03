@@ -35,8 +35,6 @@ public class LevelManager : MonoBehaviour
     public TMP_Text EndScreentimeCurrent;
     public TMP_Text EndScreenRatingRequired;
     public TMP_Text EndScreenRatingCurrent;
-    public TMP_Text EndScreenCustRequired;
-    public TMP_Text EndScreenCustCurrent;
     public TMP_Text TimeOutScreenRatingRequired;
     public TMP_Text TimeOutScreenRatingCurrent;
     public TMP_Text TimeOutScreenCustRequired;
@@ -298,8 +296,6 @@ public class LevelManager : MonoBehaviour
 
         EndScreenRatingRequired.text = currentLevel.avgRatingReq.ToString();
         EndScreenRatingCurrent.text = currentRating.ToString();
-        EndScreenCustRequired.text = currentLevel.totalCustomers.ToString();
-        EndScreenCustCurrent.text = currentReached.ToString();
 
 
 

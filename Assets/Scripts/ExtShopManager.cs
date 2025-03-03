@@ -215,7 +215,7 @@ public class ExtShopManager : MonoBehaviour
         if (tv.currentUpgradeNo >= tv.totalUpdates)
         {
             TextManager.Instance.CaptiontextTime = 3;
-            TextManager.Instance.CaptionTextHandler("Alert", "You already have Latest Upgrades!", Color.blue, true);
+            TextManager.Instance.CaptionTextHandler("Alert", "Fully updated!", Color.blue, true);
             CheckInAnyUpgradeAvailable();
             return;
         }
@@ -328,7 +328,7 @@ public class ExtShopManager : MonoBehaviour
         if (decoration.currentUpgradeNo >= decoration.totalUpdates)
         {
             TextManager.Instance.CaptiontextTime = 3;
-            TextManager.Instance.CaptionTextHandler("Alert", "You already have Latest Upgrades!", Color.blue, true);
+            TextManager.Instance.CaptionTextHandler("Alert", "Fully updated!", Color.blue, true);
             return;
         }
 
@@ -438,7 +438,7 @@ public class ExtShopManager : MonoBehaviour
         if (soundSystem.currentUpgradeNo >= soundSystem.totalUpdates)
         {
             TextManager.Instance.CaptiontextTime = 3;
-            TextManager.Instance.CaptionTextHandler("Alert", "You already have Latest Upgrades!", Color.blue, true);
+            TextManager.Instance.CaptionTextHandler("Alert", "Fully updated!", Color.blue, true);
             return;
         }
 
@@ -545,7 +545,7 @@ public class ExtShopManager : MonoBehaviour
         if (vegetation.currentUpgradeNo >= vegetation.totalUpdates)
         {
             TextManager.Instance.CaptiontextTime = 3;
-            TextManager.Instance.CaptionTextHandler("Alert", "You already have Latest Upgrades!", Color.blue, true);
+            TextManager.Instance.CaptionTextHandler("Alert", "Fully updated!", Color.blue, true);
             return;
         }
 
@@ -652,7 +652,7 @@ public class ExtShopManager : MonoBehaviour
         if (wallArt.currentUpgradeNo >= wallArt.totalUpdates)
         {
             TextManager.Instance.CaptiontextTime = 3;
-            TextManager.Instance.CaptionTextHandler("Alert", "You already have Latest Upgrades!", Color.blue, true);
+            TextManager.Instance.CaptionTextHandler("Alert", "Fully updated!", Color.blue, true);
             return;
         }
 
@@ -785,7 +785,7 @@ public class ExtShopManager : MonoBehaviour
         if (vehicle.currentUpgradeNo >= vehicle.totalUpdates)
         {
             TextManager.Instance.CaptiontextTime = 3;
-            TextManager.Instance.CaptionTextHandler("Alert", "You already have Latest Upgrades!", Color.blue, true);
+            TextManager.Instance.CaptionTextHandler("Alert", "Fully updated!", Color.blue, true);
             return;
         }
 
@@ -907,7 +907,7 @@ public class ExtShopManager : MonoBehaviour
         if (foodMachine.currentUpgradeNo >= foodMachine.totalUpdates)
         {
             TextManager.Instance.CaptiontextTime = 3;
-            TextManager.Instance.CaptionTextHandler("Alert", "You already have Latest Upgrades!", Color.blue, true);
+            TextManager.Instance.CaptionTextHandler("Alert", "Fully updated!", Color.blue, true);
             return;
         }
 

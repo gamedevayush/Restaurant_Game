@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class CheckLevel : MonoBehaviour
 {
-    public int levelNo;// Start is called before the first frame update
-    public Sprite Locked;
+    public int levelNo;
     public Image Frame;
 	public bool Unlocked;// Start is called before the first frame update
     void OnEnable()
