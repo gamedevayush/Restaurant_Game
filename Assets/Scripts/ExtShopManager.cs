@@ -91,7 +91,7 @@ public class ExtShopManager : MonoBehaviour
     [System.Serializable]
     public class WallArtUpdate
     {
-        public Material[] prefab;
+        public GameObject[] prefab;
         public int[] levelsReq;
         public int currentUpgradeNo = 0;
         public int totalUpdates;
@@ -691,9 +691,7 @@ public class ExtShopManager : MonoBehaviour
         {
             if (i <= upgradeNo)
             {
-                Color temp = wallArt.prefab[i].color;
-                temp.a = 1;
-                wallArt.prefab[i].color = temp;
+                wallArt.prefab[i].gameObject.SetActive(true);
             }
         }
         if (upgradeNo + 1 < wallArt.totalUpdates)
@@ -736,16 +734,12 @@ public class ExtShopManager : MonoBehaviour
         {
             if (i < upgradeNo)
             {
-                Color temp = wallArt.prefab[i].color;
-                temp.a = 1;
-                wallArt.prefab[i].color = temp;
+                wallArt.prefab[i].gameObject.SetActive(true);
             }
 			else
 			{
-				 Color temp = wallArt.prefab[i].color;
-                temp.a = 0;
-                wallArt.prefab[i].color = temp;
-			}
+                wallArt.prefab[i].gameObject.SetActive(false);
+            }
 
             //if (i == upgradeNo) wallArt.prefab[i - 1].SetActive(true);
             // else wallArt.prefab[i - 1].SetActive(false);
