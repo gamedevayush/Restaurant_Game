@@ -233,7 +233,7 @@ public class ExtShopManager : MonoBehaviour
                 tv.currentUpgradeNo++;
                 GameManager.Instance.SaveTVUpgrade(tv.currentUpgradeNo);
                 CheckInAnyUpgradeAvailable();
-                AdmobController.Instance.ShowInterstitialAd();
+                //AdmobController.Instance.ShowInterstitialAd();
             }
             else
             {
@@ -344,7 +344,7 @@ public class ExtShopManager : MonoBehaviour
                 decoration.currentUpgradeNo++;
                 GameManager.Instance.SaveHeartUpgrade(decoration.currentUpgradeNo);
                 CheckInAnyUpgradeAvailable();
-                AdmobController.Instance.ShowInterstitialAd();
+                //AdmobController.Instance.ShowInterstitialAd();
             }
             else
             {
@@ -454,7 +454,7 @@ public class ExtShopManager : MonoBehaviour
                 soundSystem.currentUpgradeNo++;
                 GameManager.Instance.SaveSpeakerUpgrade(soundSystem.currentUpgradeNo);
                 CheckInAnyUpgradeAvailable();
-                AdmobController.Instance.ShowInterstitialAd();
+                //AdmobController.Instance.ShowInterstitialAd();
             }
             else
             {
@@ -561,7 +561,7 @@ public class ExtShopManager : MonoBehaviour
                 vegetation.currentUpgradeNo++;
                 GameManager.Instance.SaveVaseUpgrade(vegetation.currentUpgradeNo);
                 CheckInAnyUpgradeAvailable();
-                AdmobController.Instance.ShowInterstitialAd();
+                //AdmobController.Instance.ShowInterstitialAd();
             }
             else
             {
@@ -668,7 +668,7 @@ public class ExtShopManager : MonoBehaviour
                 wallArt.currentUpgradeNo++;
                 GameManager.Instance.SaveWallArtUpgrade(wallArt.currentUpgradeNo);
                 CheckInAnyUpgradeAvailable();
-                AdmobController.Instance.ShowInterstitialAd();
+                //AdmobController.Instance.ShowInterstitialAd();
             }
             else
 			{
@@ -802,7 +802,7 @@ public class ExtShopManager : MonoBehaviour
                 GameManager.Instance.SaveVehicleUpgrade(vehicle.currentUpgradeNo);
                 GetVehicle.Instance.Restart();
                 CheckInAnyUpgradeAvailable();
-                AdmobController.Instance.ShowInterstitialAd();
+                //AdmobController.Instance.ShowInterstitialAd();
             }
             else
             {
@@ -923,7 +923,7 @@ public class ExtShopManager : MonoBehaviour
                 foodMachine.currentUpgradeNo++;
                 GameManager.Instance.SaveMachineUpgrade(foodMachine.currentUpgradeNo);
                 CheckInAnyUpgradeAvailable();
-                AdmobController.Instance.ShowInterstitialAd();
+                //AdmobController.Instance.ShowInterstitialAd();
             }
             else
             {

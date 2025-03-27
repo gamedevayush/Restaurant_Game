@@ -210,7 +210,7 @@ public class LevelManager : MonoBehaviour
 
         CustNeedToSpawn = currentLevel.totalCustomers;
         PC.GetComponent<PlayerController>().SetIntialPos();
-        AdmobController.Instance.ShowInterstitialAd();
+        //AdmobController.Instance.ShowInterstitialAd();
     }
     public void StartLevel()
     {
