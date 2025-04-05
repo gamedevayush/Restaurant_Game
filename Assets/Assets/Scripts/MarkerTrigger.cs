@@ -27,7 +27,7 @@ public class MarkerTrigger : MonoBehaviour
             bool isTrue =  CheckConditionSuccessful();
             if (isTrue )
             {
-                if (PlayerFoodHandling.Instance.itemName.Equals(foodName, System.StringComparison.OrdinalIgnoreCase))
+                if (PlayerFoodHandling.Instance.itemName.Equals(foodName, System.StringComparison.OrdinalIgnoreCase)&&PlayerFoodHandling.Instance.currentFood=="UniversalFood")
                 {
                     SubtractFoodItems();
                     StockInventory.Instance.UpdateFoodStockUI();

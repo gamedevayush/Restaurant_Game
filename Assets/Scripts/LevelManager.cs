@@ -311,24 +311,13 @@ public class LevelManager : MonoBehaviour
             statusesEndScreen[0].GetComponent<Image>().sprite = failTextures;
         }
 
-
-        if (currentReached >= currentLevel.totalCustomers)
+        if (currentRating >= currentLevel.avgRatingReq)
         {
             statusesEndScreen[1].GetComponent<Image>().sprite = passTextures;
         }
         else
         {
             statusesEndScreen[1].GetComponent<Image>().sprite = failTextures;
-        }
-
-
-        if (currentRating >= currentLevel.avgRatingReq)
-        {
-            statusesEndScreen[2].GetComponent<Image>().sprite = passTextures;
-        }
-        else
-        {
-            statusesEndScreen[2].GetComponent<Image>().sprite = failTextures;
         }
         PC.GetComponent<PlayerController>().enabled = false;
         joyStick.SetActive(false);
