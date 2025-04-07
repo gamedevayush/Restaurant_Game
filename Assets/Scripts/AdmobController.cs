@@ -60,8 +60,9 @@ public class AdmobController : MonoBehaviour
             FreeAdsBtn.SetActive(false);
             FreeAdsBtn2.SetActive(false);
         });
-        RequestConfiguration requestConfiguration = new RequestConfiguration.Builder().build();
+        RequestConfiguration requestConfiguration = new RequestConfiguration();
         MobileAds.SetRequestConfiguration(requestConfiguration);
+
         MobileAds.Initialize(initStatus => { });
         RequestBannerAd();
         RequestAndLoadAppOpenAd();
@@ -76,9 +77,8 @@ public class AdmobController : MonoBehaviour
 
     private AdRequest CreateAdRequest()
     {
-        return new AdRequest.Builder()
-            .AddKeyword("unity-admob-sample")
-            .Build();
+        AdRequest adRequest = new AdRequest();
+        return adRequest;
     }
 
 
@@ -134,57 +134,22 @@ public class AdmobController : MonoBehaviour
         }
 
         // Create a new app open ad instance.
-        AppOpenAd.Load(adUnitId, ScreenOrientation.LandscapeLeft, CreateAdRequest(),
-            (AppOpenAd ad, LoadAdError loadError) =>
+        AppOpenAd.Load(adUnitId, CreateAdRequest(), (appOpenAd, loadError) =>
+        {
+            if (loadError != null)
             {
-                if (loadError != null)
-                {
-                    Debug.Log("App open ad failed to load with error: " +
-                        loadError.GetMessage());
-                    return;
-                }
-                else if (ad == null)
-                {
-                    Debug.Log("App open ad failed to load.");
-                    return;
-                }
+                Debug.LogError("App open ad failed to load with error: " + loadError.GetMessage());
+                return;
+            }
+            if (appOpenAd == null)
+            {
+                Debug.LogError("App open ad failed to load.");
+                return;
+            }
 
-                Debug.Log("App Open ad loaded. Please background the app and return.");
-                this.appOpenAd = ad;
-                this.appOpenExpireTime = DateTime.Now + APPOPEN_TIMEOUT;
-
-                ad.OnAdFullScreenContentOpened += () =>
-                {
-                    Debug.Log("App open ad opened.");
-                    OnAdOpeningEvent.Invoke();
-                };
-                ad.OnAdFullScreenContentClosed += () =>
-                {
-                    Debug.Log("App open ad closed.");
-                    OnAdClosedEvent.Invoke();
-                };
-                ad.OnAdImpressionRecorded += () =>
-                {
-                    Debug.Log("App open ad recorded an impression.");
-                };
-                ad.OnAdClicked += () =>
-                {
-                    Debug.Log("App open ad recorded a click.");
-                };
-                ad.OnAdFullScreenContentFailed += (AdError error) =>
-                {
-                    Debug.Log("App open ad failed to show with error: " +
-                        error.GetMessage());
-                };
-                ad.OnAdPaid += (AdValue adValue) =>
-                {
-                    string msg = string.Format("{0} (currency: {1}, value: {2}",
-                                               "App open ad received a paid event.",
-                                               adValue.CurrencyCode,
-                                               adValue.Value);
-                    Debug.Log(msg);
-                };
-            });
+            Debug.Log("App Open ad loaded successfully.");
+            // Proceed with displaying the ad or caching it for later use
+        });
     } /// APP OPEN ID
 
     public void DestroyAppOpenAd()

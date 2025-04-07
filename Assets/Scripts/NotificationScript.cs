@@ -26,7 +26,7 @@ public class NotificationScript : MonoBehaviour
         var notification = new AndroidNotification()
         {
             Title = "Your Customers are Waiting!",
-            Text = "The restaurant is empty! Come back and keep your business running! 🍽",
+            Text = "The restaurant is empty! Come back and keep your business running! ",
             FireTime = System.DateTime.Now.AddHours(10)
     };
 

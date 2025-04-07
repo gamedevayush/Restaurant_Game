@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int garbageStatus = 0;
     public GameObject GarbageLayersParent;
     public GameObject ExtShopManager;
+    public GameObject Victory;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
         }
         if (level > 29)
         {
+            Victory.SetActive(true);
             return;
         }
         PlayerPrefs.SetInt("Level", level + 1);
@@ -169,14 +171,14 @@ public class GameManager : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKeyUp(KeyCode.S))
+       /* if (Input.GetKeyUp(KeyCode.S))
         {
             Time.timeScale = Time.timeScale * 2;
         }
         if (Input.GetKeyUp(KeyCode.A))
         {
             Time.timeScale = Time.timeScale / 2;
-        }
+        }*/
     }
     void OnApplicationQuit()
     {
