@@ -45,7 +45,7 @@ public class UnityOptimizerBuildLogExtender : IPreprocessBuildWithReport, IPostp
 
         Debug.Log("UnityOptimizerBuildLogExtender.OnPostprocessBuild build path : " + report.summary.outputPath);
 
-        Debug.Log("UnityOptimizerBuildLogExtender.OnPostprocessBuild files length : " + report.files.Length);
+        Debug.Log("UnityOptimizerBuildLogExtender.OnPostprocessBuild files length : " + report.GetFiles().Length);
 
         BuildOptions options = report.summary.options;
 

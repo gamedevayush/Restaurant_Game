@@ -64,13 +64,22 @@ public class CustomerAI : MonoBehaviour
     public bool haveOrdered;
     private void Awake()
     {
-        haveOrdered = false;
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.useGravity = false;
+
         anim = GetComponent<Animator>();
+        anim.applyRootMotion = false;
+
         theAgent = GetComponent<NavMeshAgent>();
+        theAgent.updateRotation = false;
+        //theAgent.stoppingDistance = 0.5f;
+        haveOrdered = false;
         this.gameObject.tag = "Customer";
         if (hutManager == null)
             hutManager = GameObject.Find("Huts Manager").GetComponent<HutsManager>();
     }
+
     void Start()
     {
 
@@ -88,7 +97,8 @@ public class CustomerAI : MonoBehaviour
         HandleAnimations();
         if (theAgent.velocity.sqrMagnitude > Mathf.Epsilon)
         {
-            transform.rotation = Quaternion.LookRotation(theAgent.velocity.normalized);
+            Quaternion targetRotation = Quaternion.LookRotation(theAgent.velocity.normalized);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
 
 

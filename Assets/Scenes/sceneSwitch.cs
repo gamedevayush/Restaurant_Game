@@ -28,16 +28,28 @@ public class sceneSwitch : MonoBehaviour
 		Application.Quit();
 	}
 
-    public void AyusharmaButton()
+    public void AyushSharma()
     {
-        Application.OpenURL("https://www.instagram.com/ayusharma0507/");
+        Application.OpenURL("https://www.instagram.com/ayusharma8445/");
         
     }
 
-    public void AyushBahiyaButton()
+    public void AyushSingh()
     {
         Application.OpenURL("https://www.instagram.com/ayush_singh_8x/");
         
+    }
+
+    public void Dolly()
+    {
+        Application.OpenURL("https://www.instagram.com/itsdollychaudhary/");
+
+    }
+
+    public void Milan()
+    {
+        Application.OpenURL("https://www.instagram.com/milan_saxena001/");
+
     }
 
 

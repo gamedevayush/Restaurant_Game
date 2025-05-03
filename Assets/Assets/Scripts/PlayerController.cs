@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     public float runSpeed = 2.0f;
     public float smoothRotationTime = 0.25f;
-    void Start()
+
+    public void LetsStart()
     {
         playerCamera = Camera.main.transform;
         theAgent = this.GetComponent<NavMeshAgent>();
@@ -39,12 +40,14 @@ public class PlayerController : MonoBehaviour
     public void SetIntialPos()
     {
         transform.position = startPos.transform.position;
-        GetComponent<PlayMakerFSM>().SendEvent("Initial");
+        //GetComponent<PlayMakerFSM>().SendEvent("Initial");
         SetDestination(Destinations[7]);
     }
 
     void Update()
     {
+        if (theAgent == null||anim==null)
+            return;
         if (isMoving && agentActive)
         {
             if (Vector3.Distance(Destinations[currentDestination].transform.position, transform.position) > 0.1f)
