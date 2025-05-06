@@ -7,7 +7,7 @@ public class BuildFood : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    ItemHandler[] items;
+    public ItemHandler[] items;
     public string[] foodNames;
     public int[] quantities;
     public float delayTime;
@@ -71,6 +71,8 @@ public class BuildFood : MonoBehaviour
         AOSliderHolder.SetActive(true);
         ToastManager.Instance.ShowToast("Starts Cooking", 2);
         src.Play();
+        foodSlider.value = 0;
+        foodSlider2.value = 0;
         foodSlider.transform.gameObject.SetActive(true);
         foodSlider2.transform.gameObject.SetActive(true);
         foodSlider.maxValue = (int)delayTime;

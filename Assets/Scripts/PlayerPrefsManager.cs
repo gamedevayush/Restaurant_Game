@@ -5,18 +5,19 @@ using TMPro;
 
 public class PlayerPrefsManager : MonoBehaviour
 {
+    public BuildFood buildFood;
     [System.Serializable]
     public class PlayerPrefsManagement
     {
         public TMP_Text current;
         public TMP_InputField Desired;
     }
-
-    public PlayerPrefsManagement level, vehicle, islearnt, coins,speed;
+    public string[] foodnames;
+    public PlayerPrefsManagement level, vehicle, islearnt, coins, speed, stock;
     void OnEnable()
     {
-       level.current.text= PlayerPrefs.GetInt("Level", 1).ToString();
-       vehicle.current.text= PlayerPrefs.GetInt("VehicleUpgrade", 1).ToString();
+        level.current.text = PlayerPrefs.GetInt("Level", 1).ToString();
+        vehicle.current.text = PlayerPrefs.GetInt("VehicleUpgrade", 1).ToString();
         islearnt.current.text = PlayerPrefs.GetInt("isLearnt", 0).ToString();
         coins.current.text = PlayerPrefs.GetInt("globalCoins", 100).ToString();
         speed.current.text = Time.timeScale.ToString();
@@ -24,8 +25,17 @@ public class PlayerPrefsManager : MonoBehaviour
 
     // Update is called once per frame
     public void ChangeValues(string name)
-      
+
     {
+        if (name == "stock")
+        {
+            for (int i = 0; i < foodnames.Length; i++)
+            {
+                FoodEngine.Instance.AddFood(foodnames[i], int.Parse(stock.Desired.text));
+                FoodCounter.Instance.AddFood(foodnames[i], int.Parse(stock.Desired.text));
+            }
+            StockInventory.Instance.UpdateFoodStockUI();
+        }
         if (name == "level")
         {
             PlayerPrefs.SetInt("Level", int.Parse(level.Desired.text));
@@ -44,7 +54,7 @@ public class PlayerPrefsManager : MonoBehaviour
         }
         if (name == "speed")
         {
-            Time.timeScale =float.Parse(speed.Desired.text);
+            Time.timeScale = float.Parse(speed.Desired.text);
             speed.current.text = Time.timeScale.ToString();
         }
     }

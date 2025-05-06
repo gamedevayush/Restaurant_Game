@@ -29,7 +29,15 @@ public class CameraCollision : MonoBehaviour
 
         if (Physics.Linecast(transform.parent.position, desiredCameraPos, out hit))
         {
-            distance = Mathf.Clamp((hit.distance * 0.87f), minDistance, maxDistance);
+            if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "Customer")
+            {
+                distance = maxDistance;
+            }
+            else
+            {
+                distance = Mathf.Clamp((hit.distance * 0.87f), minDistance, maxDistance);
+
+            }
 
         }
         else
